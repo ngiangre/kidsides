@@ -1,0 +1,56 @@
+---
+title: "PDSdatabase"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This data package contains the SQLite database of half a million pediatric drug safety signals across 250,000 drug reports of children from birth through late adolescence. The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This data resource can be used by the community for research and educational purposes. 
+
+# Background
+
+Adverse drug reactions are a leading cause of morbidity and mortality that costs billions of dollars for the healthcare system. In children, there is increased risk for adverse drug reactions with potentially lasting adverse effects into adulthood. The current pediatric drug safety landscape, including clinical trials, is limited as it rarely includes children and relies on extrapolation from adults. Children are not small adults but go through an evolutionarily conserved and physiologically dynamic process of growth and maturation. We hypothesize that adverse drug reactions manifest from the interaction between drug exposure and dynamic biological processes during child growth and development.
+
+We hypothesize that by developing statistical methodologies with prior knowledge of dynamic, shared information during development, we can improve the detection of adverse drug events in children. This data package contains the SQLite database created by applying covariate-adjusted disproportionality GAMs (dGAMs) in a systematic way to develop a resource of nearly half a million adverse drug event (ADE) risk estimates across child development stages.
+
+We provide the [PDSportal](http://pdsportal.shinyapps.io/pdsportal/) as an accessible web application as well as a bulk download of our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology. 
+
+The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://ssrn.com/abstract=3898786).
+
+# Installation
+
+```{r}
+
+#remotes::install_github("ngiangre/PDSdatabase")
+library(PDSdatabase)
+
+```
+
+# Usage
+
+```{r}
+library(tidyverse)
+
+if(!("effect_peds_19q2_v0.3_20211119.sqlite" %in% list.files())){
+    download_sqlite_db()
+}
+con <- connect_sqlite_db()
+DBI::dbListTables(con)
+for(tab in DBI::dbListTables(con)){
+    cat("\n\t`",tab,"` table\n\n",sep = "")
+    print(dplyr::tbl(con,tab))
+    cat("\n----------")
+}
+disconnect_sqlite_db(con)
+
+```
+
+# References
+
+[Mind the developmental gap: Identifying adverse drug effects across childhood to evaluate biological mechanisms from growth and development](https://doi.org/10.7916/d8-5d9b-6738)
+
+Giangreco, Nicholas P. and Tatonetti, Nicholas P., A Database of Pediatric Drug Effects to Evaluate Ontogenic Mechanisms From Child Growth and Development. Available at [SSRN](https://ssrn.com/abstract=3898786) or [DOI](http://dx.doi.org/10.2139/ssrn.3898786)

@@ -1,0 +1,53 @@
+#' Download the Pediatric Drug Safety database
+#'
+#' Thus function downloads the database published in Giangreco et al. 2022.
+#'
+#' @param url The url of the sqlite database
+#' @param destfile The path where to dump the sqlite database. See `download.file`
+#' @param method The method to download the sqlite database. See `download.file`
+#' @param quiet Whether to download quietly. See `download.file`
+#'
+#'
+#' @return TRUE, invisibly
+#' @export
+#'
+#' @importFrom utils download.file
+#'
+
+download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",destfile="./effect_peds_19q2_v0.3_20211119.sqlite",method="auto",quiet=TRUE) {
+  download.file(
+      url = url,
+      destfile = destfile,
+      method = method,
+      quiet = quiet)
+}
+
+#' Connect to the Pediatric Drug Safety database
+#'
+#' This function makes a sqlite connection from the downloaded database.
+#'
+#' @rdname connect_sqlite_db
+#'
+#' @param dbname The path to the sqlite file
+#'
+#' @return SQLite connection, invisibly
+#' @export
+#'
+connect_sqlite_db <- function(dbname="./effect_peds_19q2_v0.3_20211119.sqlite"){
+    DBI::dbConnect(RSQLite::SQLite(),dbname=dbname)
+}
+
+#' Disconnect from the Pediatric Drug Safety database
+#'
+#' This function disconnects the sqlite database connection.
+#'
+#' @rdname disconnect_sqlite_db
+#'
+#' @param con The sqlite connection
+#'
+#' @return TRUE, invisibly
+#' @export
+#'
+disconnect_sqlite_db <- function(con){
+    DBI::dbDisconnect(con)
+}
