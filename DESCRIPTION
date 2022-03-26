@@ -15,3 +15,5 @@ RoxygenNote: 7.1.2
 Imports: 
     DBI,
     RSQLite
+Suggests:
+    tidyverse

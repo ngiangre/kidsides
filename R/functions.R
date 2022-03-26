@@ -3,9 +3,9 @@
 #' Thus function downloads the database published in Giangreco et al. 2022.
 #'
 #' @param url The url of the sqlite database
-#' @param destfile The path where to dump the sqlite database. See `download.file`
-#' @param method The method to download the sqlite database. See `download.file`
-#' @param quiet Whether to download quietly. See `download.file`
+#' @param destfile The path where to dump the sqlite database. See \code{download.file}
+#' @param method The method to download the sqlite database. See \code{download.file}
+#' @param quiet Whether to download quietly. See \code{download.file}
 #'
 #'
 #' @return TRUE, invisibly

@@ -9,7 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-This data package contains the SQLite database of half a million pediatric drug safety signals across 250,000 drug reports of children from birth through late adolescence. The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This data resource can be used by the community for research and educational purposes. 
+This data package contains the SQLite database of:
+
+* 500,000 pediatric drug safety signals derived from 
+
+* 250,000 pediatric drug reports across
+
+* 7 child development stages spanning from birth through late adolescence (21 years of age).
+
+The database was created using the methods and analyses in the references. Final paper coming out soon!
+
+The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This data resource can be used by the community for research and educational purposes. 
 
 # Background
 
@@ -38,19 +48,33 @@ library(tidyverse)
 if(!("effect_peds_19q2_v0.3_20211119.sqlite" %in% list.files())){
     download_sqlite_db()
 }
+
 con <- connect_sqlite_db()
+
 DBI::dbListTables(con)
-for(tab in DBI::dbListTables(con)){
-    cat("\n\t`",tab,"` table\n\n",sep = "")
-    print(dplyr::tbl(con,tab))
-    cat("\n----------")
-}
+
+dplyr::tbl(con,"dictionary") %>% 
+    dplyr::collect()
+
+dplyr::tbl(con,"ade_nichd") %>% 
+    dplyr::collect()
+
+dplyr::tbl(con,"ade") %>% 
+    dplyr::collect()
+
+dplyr::tbl(con,"ade_raw") %>% 
+    dplyr::collect()
+
+
 disconnect_sqlite_db(con)
 
 ```
 
 # References
 
-[Mind the developmental gap: Identifying adverse drug effects across childhood to evaluate biological mechanisms from growth and development](https://doi.org/10.7916/d8-5d9b-6738)
 
-Giangreco, Nicholas P. and Tatonetti, Nicholas P., A Database of Pediatric Drug Effects to Evaluate Ontogenic Mechanisms From Child Growth and Development. Available at [SSRN](https://ssrn.com/abstract=3898786) or [DOI](http://dx.doi.org/10.2139/ssrn.3898786)
+Giangreco, Nicholas. Mind the developmental gap: Identifying adverse drug effects across childhood to evaluate biological mechanisms from growth and development. 2022. Columbia University, [PhD dissertation](https://doi.org/10.7916/d8-5d9b-6738).
+
+Giangreco, Nicholas P. and Tatonetti, Nicholas P., A Database of Pediatric Drug Effects to Evaluate Ontogenic Mechanisms From Child Growth and Development. Available at [SSRN](https://ssrn.com/abstract=3898786) or [DOI](http://dx.doi.org/10.2139/ssrn.3898786) or [medRxiv](https://doi.org/10.1101/2021.07.15.21260602)
+
+
