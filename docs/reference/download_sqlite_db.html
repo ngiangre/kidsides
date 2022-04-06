@@ -46,7 +46,8 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">download_sqlite_db</span><span class="op">(</span>
   url <span class="op">=</span> <span class="st">"https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite"</span>,
-  destfile <span class="op">=</span> <span class="st">"./effect_peds_19q2_v0.3_20211119.sqlite"</span>,
+  path <span class="op">=</span> <span class="st">"./"</span>,
+  destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"effect_peds_19q2_v0.3_20211119.sqlite"</span><span class="op">)</span>,
   method <span class="op">=</span> <span class="st">"auto"</span>,
   quiet <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
@@ -56,8 +57,10 @@
     <h2>Arguments</h2>
     <dl><dt>url</dt>
 <dd><p>The url of the sqlite database</p></dd>
+<dt>path</dt>
+<dd><p>The path where to dump the sqlite database.</p></dd>
 <dt>destfile</dt>
-<dd><p>The path where to dump the sqlite database. See <code>download.file</code></p></dd>
+<dd><p>The path and filename where to dump the sqlite database. See <code>download.file</code></p></dd>
 <dt>method</dt>
 <dd><p>The method to download the sqlite database. See <code>download.file</code></p></dd>
 <dt>quiet</dt>

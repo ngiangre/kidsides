@@ -6,7 +6,8 @@
 \usage{
 download_sqlite_db(
   url = "https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",
-  destfile = "./effect_peds_19q2_v0.3_20211119.sqlite",
+  path = "./",
+  destfile = paste0(path, "effect_peds_19q2_v0.3_20211119.sqlite"),
   method = "auto",
   quiet = TRUE
 )
@@ -14,7 +15,9 @@ download_sqlite_db(
 \arguments{
 \item{url}{The url of the sqlite database}
 
-\item{destfile}{The path where to dump the sqlite database. See \code{download.file}}
+\item{path}{The path where to dump the sqlite database.}
+
+\item{destfile}{The path and filename where to dump the sqlite database. See \code{download.file}}
 
 \item{method}{The method to download the sqlite database. See \code{download.file}}
 

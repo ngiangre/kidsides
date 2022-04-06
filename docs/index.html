@@ -65,23 +65,46 @@
 </h1></div>
 </div>
 <div class="section level1">
-<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<h1 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h1>
-<p>This data package contains the SQLite database of:</p>
-<ul>
-<li><p>500,000 pediatric drug safety signals derived from</p></li>
-<li><p>250,000 pediatric drug reports across</p></li>
-<li><p>7 child development stages spanning from birth through late adolescence (21 years of age).</p></li>
-</ul>
+<p>This R data package contains observation, summary, and model-level data from pediatric drug safety research developed by Nicholas Giangreco for his PhD dissertation in the Tatonetti lab at Columbia University.</p>
+<p>The database is comprised of 17 tables including a table with descriptions of the fields in each table. The main table, <code>ade_nichd</code>, contains quantitative data from nearly 500,000 pediatric drug safety signals across 7 child development stages spanning from birth through late adolescence (21 years of age).</p>
 <p>The database was created using the methods and analyses in the references. Final paper coming out soon!</p>
-<p>The <code>PDSdatabase</code> R package downloads a sqlite database to your local machine and connects to the database using the <code>DBI</code> R package. This data resource can be used by the community for research and educational purposes.</p>
+<p>This data resource can be used by the community for research and educational purposes.</p>
 </div>
 <div class="section level1">
 <h1 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h1>
 <p>Adverse drug reactions are a leading cause of morbidity and mortality that costs billions of dollars for the healthcare system. In children, there is increased risk for adverse drug reactions with potentially lasting adverse effects into adulthood. The current pediatric drug safety landscape, including clinical trials, is limited as it rarely includes children and relies on extrapolation from adults. Children are not small adults but go through an evolutionarily conserved and physiologically dynamic process of growth and maturation. We hypothesize that adverse drug reactions manifest from the interaction between drug exposure and dynamic biological processes during child growth and development.</p>
 <p>We hypothesize that by developing statistical methodologies with prior knowledge of dynamic, shared information during development, we can improve the detection of adverse drug events in children. This data package contains the SQLite database created by applying covariate-adjusted disproportionality GAMs (dGAMs) in a systematic way to develop a resource of nearly half a million adverse drug event (ADE) risk estimates across child development stages.</p>
-<p>We provide the <a href="http://pdsportal.shinyapps.io/pdsportal/" class="external-link">PDSportal</a> as an accessible web application as well as a bulk download of our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology.</p>
+</div>
+<div class="section level1">
+<h1 id="pediatric-drug-safety-pds-data">Pediatric Drug Safety (PDS) data<a class="anchor" aria-label="anchor" href="#pediatric-drug-safety-pds-data"></a>
+</h1>
+<div class="section level2">
+<h2 id="observation-level-data">Observation-level data<a class="anchor" aria-label="anchor" href="#observation-level-data"></a>
+</h2>
+<p>The observation-level data, case reports for drug(s) potentially linked to adverse event(s), was collected by the Food and Drug Administration Adverse Event System (FAERS) in the US. This data is publicly available on the openFDA platform <a href="https://open.fda.gov/data/downloads/" class="external-link">here</a>. However, utilizing this data as-is is non-trivial, where the drug event report data is published in a nested json structure each quarter per year since the 1990s. With an API key with extended permissions, I developed custom python notebooks and scripts available in the ‘openFDA_drug_event-parsing’ github repository (DOI: <a href="https://doi.org/10.5281/zenodo.4464544" class="external-link uri">https://doi.org/10.5281/zenodo.4464544</a>) to extract and format all drug event reports prior to the third quarter of 2019. This observation-level data used, called Pediatric FAERS, for downstream analyses is stored in the table <code>ade_raw</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="summary-level-data">Summary-level data<a class="anchor" aria-label="anchor" href="#summary-level-data"></a>
+</h2>
+<p>The drugs and adverse events reported were coded into standard, hierarchical vocabularies. Adverse events were standardized by the Medical Dictionary of Regulatory Activities (MedDRA) vocabulary (details of the hierarcy founds <a href="https://www.meddra.org/how-to-use/basics/hierarchy" class="external-link">here</a>). Drugs were standardized by the Anatomical Therapeutic Class (ATC) vocabulary (details found <a href="https://www.who.int/tools/atc-ddd-toolkit/atc-classification" class="external-link">here</a>). The reporting of adverse events can be dependent on the disease context of a report’s subject. This was represented by summarizing the number of drugs of a therapeutic class for each report.</p>
+</div>
+<div class="section level2">
+<h2 id="model-level-data">Model-level data<a class="anchor" aria-label="anchor" href="#model-level-data"></a>
+</h2>
+<p>We invented the disproportionality generalized additive model (dGAM) method for detecting adverse drug events from these spontaneous reports. We applied the logistic generalized additive model to all unique drug-event pairs in Pediatric FAERS. The drug-event GAM was used to quantify adverse event risk due to drug exposure versus no exposure across child development stages. Please see the references for the full specification and details on the GAM.</p>
+</div>
+</div>
+<div class="section level1">
+<h1 id="pdsportal-accessible-data-access">PDSportal: accessible data access<a class="anchor" aria-label="anchor" href="#pdsportal-accessible-data-access"></a>
+</h1>
+<p>We provide the <a href="http://pdsportal.shinyapps.io/pdsportal/" class="external-link">PDSportal</a> as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology.</p>
+</div>
+<div class="section level1">
+<h1 id="pdsdatabase-1">PDSdatabase<a class="anchor" aria-label="anchor" href="#pdsdatabase-1"></a>
+</h1>
 <p>The <code>PDSdatabase</code> R package downloads a sqlite database to your local machine and connects to the database using the <code>DBI</code> R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the <a href="https://github.com/ngiangre/pediatric_ade_database_study" class="external-link">code repository</a> for the <a href="https://ssrn.com/abstract=3898786" class="external-link">paper</a>.</p>
 </div>
 <div class="section level1">
@@ -95,120 +118,106 @@
 <h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h1>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## ✓ tibble  3.1.6     ✓ dplyr   1.0.8</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ✓ tidyr   1.2.0     ✓ stringr 1.4.0</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ✓ readr   2.1.1     ✓ forcats 0.5.1</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package 'tidyr' was built under R version 4.0.5</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package 'dplyr' was built under R version 4.0.5</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">## x dplyr::filter() masks stats::filter()</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">## x dplyr::lag()    masks stats::lag()</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="st">"effect_peds_19q2_v0.3_20211119.sqlite"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-    <span class="fu"><a href="reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
+
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="st">"effect_peds_19q2_v0.3_20211119.sqlite"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="fu">PDSdatabase</span><span class="fu">::</span><span class="fu"><a href="reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">PDSdatabase</span><span class="fu">::</span><span class="fu"><a href="reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "ade"                                           </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] "ade_nichd"                                     </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] "ade_nichd_enrichment"                          </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [4] "ade_null"                                      </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] "ade_null_distribution"                         </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6] "ade_raw"                                       </span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] "atc_raw_map"                                   </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [8] "cyp_gene_expression_substrate_risk_information"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] "dictionary"                                    </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [10] "drug"                                          </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] "drug_gene"                                     </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [12] "event"                                         </span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] "gene"                                          </span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [14] "gene_expression"                               </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] "grip"                                          </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [16] "ryan"                                          </span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] "sider"</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "ade"                                           </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] "ade_nichd"                                     </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] "ade_nichd_enrichment"                          </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  [4] "ade_null"                                      </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] "ade_null_distribution"                         </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6] "ade_raw"                                       </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] "atc_raw_map"                                   </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [8] "cyp_gene_expression_substrate_risk_information"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] "dictionary"                                    </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [10] "drug"                                          </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] "drug_gene"                                     </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [12] "event"                                         </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] "gene"                                          </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [14] "gene_expression"                               </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] "grip"                                          </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [16] "ryan"                                          </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] "sider"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"dictionary"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 152 × 4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    table field             description                                     type </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;                                           &lt;chr&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 drug  atc_concept_id    The ATC 5th level OMOP concept identifier.      int  </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 drug  atc_concept_name  The ATC 5th level OMOP concept name. In the ad… char…</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 drug  atc_concept_code  The ATC 5th level OMOP concept code.            char…</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 drug  ndrugreports      The number of reports of the drug in Pediatric… int  </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 drug  atc4_concept_name The ATC 4th level OMOP concept name.            char…</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 drug  atc4_concept_code The ATC 4th level OMOP concept code.            char…</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 drug  atc3_concept_name The ATC 3rd level OMOP concept name.            char…</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 drug  atc3_concept_code The ATC 3rd level OMOP concept code.            char…</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 drug  atc2_concept_name The ATC 2nd level OMOP concept name.            char…</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 drug  atc2_concept_code The ATC 2nd level OMOP concept code.            char…</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 142 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"dictionary"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade_nichd"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 152 × 4</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    table field             description                                     type </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt; &lt;chr&gt;             &lt;chr&gt;                                           &lt;chr&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 drug  atc_concept_id    The ATC 5th level OMOP concept identifier.      int  </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 drug  atc_concept_name  The ATC 5th level OMOP concept name. In the ad… char…</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 drug  atc_concept_code  The ATC 5th level OMOP concept code.            char…</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 drug  ndrugreports      The number of reports of the drug in Pediatric… int  </span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 drug  atc4_concept_name The ATC 4th level OMOP concept name.            char…</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 drug  atc4_concept_code The ATC 4th level OMOP concept code.            char…</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 drug  atc3_concept_name The ATC 3rd level OMOP concept name.            char…</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 drug  atc3_concept_code The ATC 3rd level OMOP concept code.            char…</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 drug  atc2_concept_name The ATC 2nd level OMOP concept name.            char…</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 drug  atc2_concept_code The ATC 2nd level OMOP concept code.            char…</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 142 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3,225,859 × 13</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    atc_concept_id meddra_concept_id ade       nichd gam_score  norm gam_score_se</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##             &lt;int&gt;             &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1        1588648          35809076 1588648_… term…    -0.131 0             2.48</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2        1588648          35809076 1588648_… infa…     0.947 0.166         1.98</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3        1588648          35809076 1588648_… todd…     2.03  0.332         1.79</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4        1588648          35809076 1588648_… earl…     3.11  0.499         1.86</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5        1588648          35809076 1588648_… midd…     4.21  0.667         2.10</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6        1588648          35809076 1588648_… earl…     5.30  0.834         2.52</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7        1588648          35809076 1588648_… late…     6.38  1             3.14</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8        1588648          36315755 1588648_… term…    -0.310 0             5.61</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9        1588648          36315755 1588648_… infa…     2.25  0.166         4.43</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10        1588648          36315755 1588648_… todd…     4.81  0.332         3.79</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 3,225,849 more rows, and 6 more variables: gam_score_90mse &lt;dbl&gt;,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   gam_score_90pse &lt;dbl&gt;, D &lt;int&gt;, E &lt;int&gt;, DE &lt;int&gt;, ade_name &lt;chr&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade_nichd"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 3,225,859 × 13</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    atc_concept_id meddra_concept_id ade       nichd gam_score  norm gam_score_se</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##             &lt;int&gt;             &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1        1588648          35809076 1588648_… term…    -0.131 0             2.48</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2        1588648          35809076 1588648_… infa…     0.947 0.166         1.98</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3        1588648          35809076 1588648_… todd…     2.03  0.332         1.79</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4        1588648          35809076 1588648_… earl…     3.11  0.499         1.86</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5        1588648          35809076 1588648_… midd…     4.21  0.667         2.10</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6        1588648          35809076 1588648_… earl…     5.30  0.834         2.52</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7        1588648          35809076 1588648_… late…     6.38  1             3.14</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8        1588648          36315755 1588648_… term…    -0.310 0             5.61</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9        1588648          36315755 1588648_… infa…     2.25  0.166         4.43</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10        1588648          36315755 1588648_… todd…     4.81  0.332         3.79</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 3,225,849 more rows, and 6 more variables: gam_score_90mse &lt;dbl&gt;,</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   gam_score_90pse &lt;dbl&gt;, D &lt;int&gt;, E &lt;int&gt;, DE &lt;int&gt;, ade_name &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 460,823 × 9</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    ade    atc_concept_id meddra_concept_… cluster_id gt_null_statist… gt_null_99</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;           &lt;int&gt;            &lt;int&gt; &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 15886…        1588648         35809076 2                         1          0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 15886…        1588648         36315755 2                         1          1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 15886…        1588648         36416514 2                         1          0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 15886…        1588648         37019318 2                         1          0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 15886…        1588648         37019399 2                         1          1</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 15886…        1588648         37522220 2                         1          0</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 15886…        1588697         35104746 4                         0          0</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 15886…        1588697         35104812 2                         0          0</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 15886…        1588697         35104824 2                         0          0</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 15886…        1588697         35104834 4                         0          0</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 460,813 more rows, and 3 more variables: max_score_nichd &lt;chr&gt;,</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   cluster_name &lt;chr&gt;, ade_nreports &lt;chr&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade_raw"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 460,823 × 9</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    ade    atc_concept_id meddra_concept_… cluster_id gt_null_statist… gt_null_99</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;           &lt;int&gt;            &lt;int&gt; &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 15886…        1588648         35809076 2                         1          0</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 15886…        1588648         36315755 2                         1          1</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 15886…        1588648         36416514 2                         1          0</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 15886…        1588648         37019318 2                         1          0</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 15886…        1588648         37019399 2                         1          1</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 15886…        1588648         37522220 2                         1          0</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 15886…        1588697         35104746 4                         0          0</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 15886…        1588697         35104812 2                         0          0</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 15886…        1588697         35104824 2                         0          0</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 15886…        1588697         35104834 4                         0          0</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 460,813 more rows, and 3 more variables: max_score_nichd &lt;chr&gt;,</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   cluster_name &lt;chr&gt;, ade_nreports &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2,326,383 × 23</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    safetyreportid ade               atc_concept_id meddra_concept_id nichd sex  </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;          &lt;chr&gt;                      &lt;int&gt;             &lt;int&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 10003357       21602735_36717998       21602735          36717998 midd… Male </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 10003357       21602735_42890355       21602735          42890355 midd… Male </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 10003357       21602735_36718024       21602735          36718024 midd… Male </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 10003357       21603927_36717998       21603927          36717998 midd… Male </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 10003357       21603927_42890355       21603927          42890355 midd… Male </span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 10003357       21603927_36718024       21603927          36718024 midd… Male </span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 10003388       21600449_35205038       21600449          35205038 late… Fema…</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 10003388       21600449_35205040       21600449          35205040 late… Fema…</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 10003388       21600449_35809225       21600449          35809225 late… Fema…</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 10003401       21600449_36110708       21600449          36110708 earl… Fema…</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 2,326,373 more rows, and 17 more variables:</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   reporter_qualification &lt;chr&gt;, receive_date &lt;chr&gt;, XA &lt;dbl&gt;, XB &lt;dbl&gt;,</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   XC &lt;dbl&gt;, XD &lt;dbl&gt;, XG &lt;dbl&gt;, XH &lt;dbl&gt;, XJ &lt;dbl&gt;, XL &lt;dbl&gt;, XM &lt;dbl&gt;,</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   XN &lt;dbl&gt;, XP &lt;dbl&gt;, XR &lt;dbl&gt;, XS &lt;dbl&gt;, XV &lt;dbl&gt;, polypharmacy &lt;int&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>,<span class="st">"ade_raw"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2,326,383 × 23</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    safetyreportid ade               atc_concept_id meddra_concept_id nichd sex  </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;          &lt;chr&gt;                      &lt;int&gt;             &lt;int&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 10003357       21602735_36717998       21602735          36717998 midd… Male </span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 10003357       21602735_42890355       21602735          42890355 midd… Male </span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 10003357       21602735_36718024       21602735          36718024 midd… Male </span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 10003357       21603927_36717998       21603927          36717998 midd… Male </span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 10003357       21603927_42890355       21603927          42890355 midd… Male </span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 10003357       21603927_36718024       21603927          36718024 midd… Male </span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 10003388       21600449_35205038       21600449          35205038 late… Fema…</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 10003388       21600449_35205040       21600449          35205040 late… Fema…</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 10003388       21600449_35809225       21600449          35809225 late… Fema…</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 10003401       21600449_36110708       21600449          36110708 earl… Fema…</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # … with 2,326,373 more rows, and 17 more variables:</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="do">## #   reporter_qualification &lt;chr&gt;, receive_date &lt;chr&gt;, XA &lt;dbl&gt;, XB &lt;dbl&gt;,</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="do">## #   XC &lt;dbl&gt;, XD &lt;dbl&gt;, XG &lt;dbl&gt;, XH &lt;dbl&gt;, XJ &lt;dbl&gt;, XL &lt;dbl&gt;, XM &lt;dbl&gt;,</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   XN &lt;dbl&gt;, XP &lt;dbl&gt;, XR &lt;dbl&gt;, XS &lt;dbl&gt;, XV &lt;dbl&gt;, polypharmacy &lt;int&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/disconnect_sqlite_db.html">disconnect_sqlite_db</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level1">

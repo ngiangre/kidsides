@@ -3,7 +3,8 @@
 #' Thus function downloads the database published in Giangreco et al. 2022.
 #'
 #' @param url The url of the sqlite database
-#' @param destfile The path where to dump the sqlite database. See \code{download.file}
+#' @param path The path where to dump the sqlite database.
+#' @param destfile The path and filename where to dump the sqlite database. See \code{download.file}
 #' @param method The method to download the sqlite database. See \code{download.file}
 #' @param quiet Whether to download quietly. See \code{download.file}
 #'
@@ -14,7 +15,7 @@
 #' @importFrom utils download.file
 #'
 
-download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",destfile="./effect_peds_19q2_v0.3_20211119.sqlite",method="auto",quiet=TRUE) {
+download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",path="./",destfile=paste0(path,"effect_peds_19q2_v0.3_20211119.sqlite"),method="auto",quiet=TRUE) {
   download.file(
       url = url,
       destfile = destfile,

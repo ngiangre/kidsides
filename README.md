@@ -1,24 +1,23 @@
 PDSdatabase
 ================
 
-# Introduction
+# Summary
 
-This data package contains the SQLite database of:
+This R data package contains observation, summary, and model-level data
+from pediatric drug safety research developed by Nicholas Giangreco for
+his PhD dissertation in the Tatonetti lab at Columbia University.
 
--   500,000 pediatric drug safety signals derived from
-
--   250,000 pediatric drug reports across
-
--   7 child development stages spanning from birth through late
-    adolescence (21 years of age).
+The database is comprised of 17 tables including a table with
+descriptions of the fields in each table. The main table, `ade_nichd`,
+contains quantitative data from nearly 500,000 pediatric drug safety
+signals across 7 child development stages spanning from birth through
+late adolescence (21 years of age).
 
 The database was created using the methods and analyses in the
 references. Final paper coming out soon!
 
-The `PDSdatabase` R package downloads a sqlite database to your local
-machine and connects to the database using the `DBI` R package. This
-data resource can be used by the community for research and educational
-purposes.
+This data resource can be used by the community for research and
+educational purposes.
 
 # Background
 
@@ -42,11 +41,57 @@ covariate-adjusted disproportionality GAMs (dGAMs) in a systematic way
 to develop a resource of nearly half a million adverse drug event (ADE)
 risk estimates across child development stages.
 
+# Pediatric Drug Safety (PDS) data
+
+## Observation-level data
+
+The observation-level data, case reports for drug(s) potentially linked
+to adverse event(s), was collected by the Food and Drug Administration
+Adverse Event System (FAERS) in the US. This data is publicly available
+on the openFDA platform [here](https://open.fda.gov/data/downloads/).
+However, utilizing this data as-is is non-trivial, where the drug event
+report data is published in a nested json structure each quarter per
+year since the 1990s. With an API key with extended permissions, I
+developed custom python notebooks and scripts available in the
+‘openFDA\_drug\_event-parsing’ github repository (DOI:
+<https://doi.org/10.5281/zenodo.4464544>) to extract and format all drug
+event reports prior to the third quarter of 2019. This observation-level
+data used, called Pediatric FAERS, for downstream analyses is stored in
+the table `ade_raw`.
+
+## Summary-level data
+
+The drugs and adverse events reported were coded into standard,
+hierarchical vocabularies. Adverse events were standardized by the
+Medical Dictionary of Regulatory Activities (MedDRA) vocabulary (details
+of the hierarcy founds
+[here](https://www.meddra.org/how-to-use/basics/hierarchy)). Drugs were
+standardized by the Anatomical Therapeutic Class (ATC) vocabulary
+(details found
+[here](https://www.who.int/tools/atc-ddd-toolkit/atc-classification)).
+The reporting of adverse events can be dependent on the disease context
+of a report’s subject. This was represented by summarizing the number of
+drugs of a therapeutic class for each report.
+
+## Model-level data
+
+We invented the disproportionality generalized additive model (dGAM)
+method for detecting adverse drug events from these spontaneous reports.
+We applied the logistic generalized additive model to all unique
+drug-event pairs in Pediatric FAERS. The drug-event GAM was used to
+quantify adverse event risk due to drug exposure versus no exposure
+across child development stages. Please see the references for the full
+specification and details on the GAM.
+
+# PDSportal: accessible data access
+
 We provide the [PDSportal](http://pdsportal.shinyapps.io/pdsportal/) as
-an accessible web application as well as a bulk download of our database
-for the community to explore from identifying safety endpoints in
-clinical trials to evaluating known and novel developmental
+an accessible web application as well as a plaatform to download our
+database for the community to explore from identifying safety endpoints
+in clinical trials to evaluating known and novel developmental
 pharmacology.
+
+# PDSdatabase
 
 The `PDSdatabase` R package downloads a sqlite database to your local
 machine and connects to the database using the `DBI` R package. This is
@@ -66,30 +111,13 @@ library(PDSdatabase)
 # Usage
 
 ``` r
-library(tidyverse)
-```
+pacman::p_load(tidyverse)
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-    ## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-    ## ✓ readr   2.1.1     ✓ forcats 0.5.1
-
-    ## Warning: package 'tidyr' was built under R version 4.0.5
-
-    ## Warning: package 'dplyr' was built under R version 4.0.5
-
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
-``` r
 if(!("effect_peds_19q2_v0.3_20211119.sqlite" %in% list.files())){
-    download_sqlite_db()
+    PDSdatabase::download_sqlite_db()
 }
 
-con <- connect_sqlite_db()
+con <- PDSdatabase::connect_sqlite_db()
 
 DBI::dbListTables(con)
 ```
