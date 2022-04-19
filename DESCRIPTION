@@ -17,4 +17,5 @@ Imports:
     RSQLite
 Suggests:
     tidyverse
-URL: https://github.com/ngiangre/PDSdatabase
+URL: https://github.com/ngiangre/PDSdatabase,
+    http://nickg.bio/PDSdatabase/
