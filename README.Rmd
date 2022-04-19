@@ -15,7 +15,7 @@ The database is comprised of 17 tables including a table with descriptions of th
 
 The database was created using the methods and analyses in the references. Final paper coming out soon!
 
-This data resource can be used by the community for research and educational purposes. 
+This data resource can be used by under the MIT license agreement. 
 
 # Background
 

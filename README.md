@@ -16,8 +16,7 @@ late adolescence (21 years of age).
 The database was created using the methods and analyses in the
 references. Final paper coming out soon!
 
-This data resource can be used by the community for research and
-educational purposes.
+This data resource can be used by under the MIT license agreement.
 
 # Background
 
