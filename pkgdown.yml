@@ -2,8 +2,11 @@ pandoc: 2.7.3
 pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
+  drugs_and_classes: drugs_and_classes.html
+  events_and_classes: events_and_classes.html
   getting_started: getting_started.html
-last_built: 2022-05-22T17:41Z
+  top_ade_model: top_ade_model.html
+last_built: 2022-05-22T18:41Z
 urls:
   reference: http://nickg.bio/PDSdatabase/reference
   article: http://nickg.bio/PDSdatabase/articles
