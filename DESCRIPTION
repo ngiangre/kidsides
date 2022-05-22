@@ -11,13 +11,13 @@ Description: This package makes accessible thousands of observations, summaries,
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Imports: 
     DBI,
-    RSQLite,
+    RSQLite
+Suggests:
+    tidyverse,
     ggrepel,
     pacman
-Suggests:
-    tidyverse
 URL: https://github.com/ngiangre/PDSdatabase,
     http://nickg.bio/PDSdatabase/

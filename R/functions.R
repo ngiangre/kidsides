@@ -31,6 +31,9 @@ download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect
 #'
 #' @param dbname The path to the sqlite file
 #'
+#' @importFrom DBI dbConnect
+#' @importFrom RSQLite SQLite
+#'
 #' @return SQLite connection, invisibly
 #' @export
 #'
@@ -45,6 +48,8 @@ connect_sqlite_db <- function(dbname="./effect_peds_19q2_v0.3_20211119.sqlite"){
 #' @rdname disconnect_sqlite_db
 #'
 #' @param con The sqlite connection
+#'
+#' @importFrom DBI dbDisconnect
 #'
 #' @return TRUE, invisibly
 #' @export

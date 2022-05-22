@@ -16,7 +16,7 @@ late adolescence (21 years of age).
 The database was created using the methods and analyses in the
 references. Final paper coming out soon!
 
-This data resource can be used by under the MIT license agreement.
+This data resource can be used under the MIT license agreement.
 
 # Background
 
@@ -35,10 +35,11 @@ development.
 We hypothesize that by developing statistical methodologies with prior
 knowledge of dynamic, shared information during development, we can
 improve the detection of adverse drug events in children. This data
-package contains the SQLite database created by applying
-covariate-adjusted disproportionality GAMs (dGAMs) in a systematic way
-to develop a resource of nearly half a million adverse drug event (ADE)
-risk estimates across child development stages.
+package downloads the SQLite database created by applying
+covariate-adjusted disproportionality generalized additive models
+(dGAMs) in a systematic way to develop a resource of nearly half a
+million adverse drug event (ADE) risk estimates across child development
+stages.
 
 # Pediatric Drug Safety (PDS) data
 
@@ -47,9 +48,10 @@ risk estimates across child development stages.
 The observation-level data, case reports for drug(s) potentially linked
 to adverse event(s), was collected by the Food and Drug Administration
 Adverse Event System (FAERS) in the US. This data is publicly available
-on the openFDA platform [here](https://open.fda.gov/data/downloads/).
-However, utilizing this data as-is is non-trivial, where the drug event
-report data is published in a nested json structure each quarter per
+on the openFDA platform [here](https://open.fda.gov/data/downloads/) as
+downloadable [json files](https://api.fda.gov/download.json). However,
+utilizing this data as-is is non-trivial, where the drug event report
+data is published in chunks as a nested json structure each quarter per
 year since the 1990s. With an API key with extended permissions, I
 developed custom python notebooks and scripts available in the
 ‘openFDA\_drug\_event-parsing’ github repository (DOI:
@@ -68,9 +70,9 @@ of the hierarcy founds
 standardized by the Anatomical Therapeutic Class (ATC) vocabulary
 (details found
 [here](https://www.who.int/tools/atc-ddd-toolkit/atc-classification)).
-The reporting of adverse events can be dependent on the disease context
-of a report’s subject. This was represented by summarizing the number of
-drugs of a therapeutic class for each report.
+The reporting of adverse events and drugs can be dependent on the
+disease context of a report’s subject. This was represented by
+summarizing the number of drugs of a therapeutic class for each report.
 
 ## Model-level data
 

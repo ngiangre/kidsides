@@ -3,4 +3,7 @@
 export(connect_sqlite_db)
 export(disconnect_sqlite_db)
 export(download_sqlite_db)
+importFrom(DBI,dbConnect)
+importFrom(DBI,dbDisconnect)
+importFrom(RSQLite,SQLite)
 importFrom(utils,download.file)

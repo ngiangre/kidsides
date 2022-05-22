@@ -1,8 +1,11 @@
 ---
 title: "Getting Started"
 author: "Nick Giangreco"
-date: "4/18/2022"
-output: github_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
