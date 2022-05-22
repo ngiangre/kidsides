@@ -1,0 +1,50 @@
+---
+title: "Drugs and Drug Classes"
+author: "Nick Giangreco"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Drugs and Drug Classes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This vignette showcases the reported drugs and drug classes in the PDSdatabase:
+
+- How many drug compounds are listed in reports
+
+- How many classes of drugs are listed in reports
+
+- How many drugs and classes of drugs are listed in reports
+
+- What are the most frequent drugs and classes of drugs listed in reports across child development stages
+
+```{r}
+
+library(PDSdatabase)
+download_sqlite_db() #downloads to current working directory
+
+```
+
+Connect to the database:
+
+```{r}
+
+con <- connect_sqlite_db()
+
+```
+
+
+Disconnect database:
+
+```{r}
+
+disconnect_sqlite_db(con)
+
+```
+
