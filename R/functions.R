@@ -7,6 +7,7 @@
 #' @param destfile The path and filename where to dump the sqlite database. See \code{download.file}
 #' @param method The method to download the sqlite database. See \code{download.file}
 #' @param quiet Whether to download quietly. See \code{download.file}
+#' @param timeout Extended download session for downloading tihs file. Default is 360 seconds.
 #'
 #'
 #' @return TRUE, invisibly
@@ -15,12 +16,16 @@
 #' @importFrom utils download.file
 #'
 
-download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",path="./",destfile=paste0(path,"effect_peds_19q2_v0.3_20211119.sqlite"),method="auto",quiet=TRUE) {
-  download.file(
-      url = url,
-      destfile = destfile,
-      method = method,
-      quiet = quiet)
+download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",path="./",destfile=paste0(path,"effect_peds_19q2_v0.3_20211119.sqlite"),method="auto",quiet=TRUE,timeout=360) {
+
+    options(timeout=timeout)
+
+    download.file(
+        url = url,
+        destfile = destfile,
+        method = method,
+        quiet = quiet)
+
 }
 
 #' Connect to the Pediatric Drug Safety database

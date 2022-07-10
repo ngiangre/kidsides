@@ -64,7 +64,8 @@
   path <span class="op">=</span> <span class="st">"./"</span>,
   destfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">path</span>, <span class="st">"effect_peds_19q2_v0.3_20211119.sqlite"</span><span class="op">)</span>,
   method <span class="op">=</span> <span class="st">"auto"</span>,
-  quiet <span class="op">=</span> <span class="cn">TRUE</span>
+  quiet <span class="op">=</span> <span class="cn">TRUE</span>,
+  timeout <span class="op">=</span> <span class="fl">360</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -80,6 +81,8 @@
 <dd><p>The method to download the sqlite database. See <code>download.file</code></p></dd>
 <dt>quiet</dt>
 <dd><p>Whether to download quietly. See <code>download.file</code></p></dd>
+<dt>timeout</dt>
+<dd><p>Extended download session for downloading tihs file. Default is 360 seconds.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

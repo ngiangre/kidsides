@@ -1,6 +1,5 @@
 ---
 title: "Drugs and Drug Classes"
-author: "Nick Giangreco"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Drugs and Drug Classes}
@@ -9,10 +8,20 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,fig.height = 13,fig.width = 13)
 ```
 
 # Introduction
+
+```{r}
+library(PDSdatabase)
+library(rlang)
+library(tidyverse)
+
+theme_set(
+    ggthemes::theme_tufte() + theme(text = element_text(size=16,face="bold"))
+)
+```
 
 This vignette showcases the reported drugs and drug classes in the PDSdatabase:
 
@@ -24,14 +33,15 @@ This vignette showcases the reported drugs and drug classes in the PDSdatabase:
 
 - What are the most frequent drugs and classes of drugs listed in reports across child development stages
 
-```{r}
 
-library(PDSdatabase)
+```{r,eval=F}
+
 download_sqlite_db() #downloads to current working directory
 
 ```
 
-Connect to the database:
+
+# Connect to the database:
 
 ```{r}
 
@@ -40,7 +50,393 @@ con <- connect_sqlite_db()
 ```
 
 
-Disconnect database:
+# How many drug compounds are listed in reports?
+
+The field `atc_concept_id` is the concept adentifier for each drug's ingredient encoded in the ATC vocabulary. Below is the number of distinct drug ingredients or compounds:
+
+```{r}
+
+tbl(con,"ade_raw") %>% 
+    distinct(atc_concept_id) %>% 
+    count()
+```
+
+The number of drug compounds across reports:
+
+```{r,fig.height=5,fig.width=8}
+
+tbl(con,"ade_raw") %>% 
+    distinct(safetyreportid,atc_concept_id) %>% 
+    group_by(safetyreportid) %>% 
+    count(name = "Ndrugs") %>% 
+    group_by(Ndrugs) %>% 
+    count(name="Nreports") %>% 
+    collect() %>% 
+    ggplot(aes(Ndrugs,Nreports)) +
+    geom_bar(stat="identity",color="black",fill="gray") +
+    labs(x="Number of drugs listed in reports",
+         y="Number of reports") +
+    scale_y_continuous(trans="log10",labels=scales::comma) 
+```
+
+# How many classes of drugs are listed in reports?
+
+```{r,fig.height=8}
+tbl(con,"ade_raw") %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        tbl(con,"drug") %>% 
+            distinct(atc_concept_id,atc1_concept_name) %>% 
+            collect(),
+        by="atc_concept_id"
+    ) %>% 
+    group_by(atc1_concept_name) %>% 
+    summarise(
+        N = n_distinct(safetyreportid)
+    ) %>% 
+    ggplot(aes(N,atc1_concept_name)) +
+    geom_bar(stat="identity",color="black",fill="gray") +
+    labs(x="Number of reports",y="")
+```
+
+# What are the most frequent drugs and classes of drugs listed in reports across child development stages?
+
+```{r}
+
+scale_y_reordered <- function(..., sep = "___") {
+  reg <- paste0(sep, ".+$")
+  ggplot2::scale_y_discrete(labels = function(x) gsub(reg, "", x), ...)
+}
+
+reorder_within <- function(x, by, within, fun = mean, sep = "___", ...) {
+  new <- paste(x, within, sep = sep)
+  stats::reorder(new, by, FUN = fun)
+}
+
+drug_tbl <- 
+    tbl(con,"drug") %>% 
+    distinct(atc_concept_id,atc_concept_name,
+             !!!rlang::syms(paste0("atc",1:4,"_concept_name"))
+             ) %>% 
+    collect() %>% 
+    rename(atc5_concept_name = atc_concept_name) %>% 
+    pivot_longer(
+        cols=paste0("atc",1:5,"_concept_name"),
+        names_to = "atc_class",
+        values_to = "value"
+    ) 
+
+drug_tbl
+
+```
+
+## In all childhood
+
+```{r}
+
+tmp <- tbl(con,"ade_raw") %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports from birth through 21 years old") +
+    ylab("")
+
+```
+
+## Birth through 1 month olds - Term Neonates
+
+```{r}
+
+stage="term_neonatal"
+
+tmp <- 
+    tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in term neonates") +
+    ylab("")
+
+```
+
+## 1 month through 1 year olds - Infants
+
+```{r}
+
+stage="infancy"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in infants") +
+    ylab("")
+
+```
+
+## 1 year through 2 years old - Toddlers
+
+```{r}
+
+stage="toddler"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in toddlers") +
+    ylab("")
+
+```
+
+## 2 years through 5 years old - Early childhood
+
+```{r}
+
+stage="early_childhood"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in early childhood") +
+    ylab("")
+
+```
+
+## 5 years through 11 years old - Middle childhood
+
+```{r}
+
+stage="middle_childhood"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in middle childhood") +
+    ylab("")
+
+```
+
+
+## 11 years through 17 years old - Early adolescence
+
+```{r}
+
+stage="early_adolescence"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in early adolescence") +
+    ylab("")
+
+```
+
+## 17 years through 21 years old - Late adolescence
+
+```{r}
+
+stage="late_adolescence"
+
+tmp <- tbl(con,"ade_raw") %>% 
+    filter(nichd==!!stage) %>% 
+    distinct(safetyreportid,
+           atc_concept_id) %>% 
+    collect() %>% 
+    inner_join(
+        drug_tbl,
+        by="atc_concept_id"
+    ) %>% 
+    group_by(value) %>% 
+    summarise(
+        Nreports = n_distinct(safetyreportid)
+        ) %>% 
+    inner_join(
+        drug_tbl %>% 
+            distinct(atc_class,value),
+        by="value"
+    ) %>% 
+    arrange(desc(Nreports)) %>% 
+    group_by(atc_class) %>% 
+    slice_head(n=10)
+
+tmp %>% 
+    ggplot(aes(Nreports,reorder_within(value,Nreports,atc_class))) +
+    geom_bar(stat="identity") +
+    scale_y_reordered() +
+    facet_wrap(~atc_class,ncol=1,scales="free_y") +
+    xlab("Number of safety reports in late adolescence") +
+    ylab("")
+
+```
+
+
+# Disconnect database:
 
 ```{r}
 

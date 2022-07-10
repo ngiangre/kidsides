@@ -9,7 +9,8 @@ download_sqlite_db(
   path = "./",
   destfile = paste0(path, "effect_peds_19q2_v0.3_20211119.sqlite"),
   method = "auto",
-  quiet = TRUE
+  quiet = TRUE,
+  timeout = 360
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ download_sqlite_db(
 \item{method}{The method to download the sqlite database. See \code{download.file}}
 
 \item{quiet}{Whether to download quietly. See \code{download.file}}
+
+\item{timeout}{Extended download session for downloading tihs file. Default is 360 seconds.}
 }
 \value{
 TRUE, invisibly

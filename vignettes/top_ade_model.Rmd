@@ -1,6 +1,5 @@
 ---
 title: "Most likely ADE at child develpment stages"
-author: "Nick Giangreco"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Most likely ADE at child develpment stages}
