@@ -7,9 +7,3 @@ articles:
   navbar: ~
   contents:
   - getting_started
-- title: Seedlings
-  navbar: Seedlings
-  contents:
-  - drugs_and_classes
-  - events_and_classes
-  - top_ade_model
