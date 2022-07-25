@@ -16,7 +16,7 @@ Imports:
     DBI,
     RSQLite,
     ggthemes,
-    ggplot,
+    ggplot2,
     rlang,
     scales,
     knitr
