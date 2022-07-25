@@ -24,6 +24,12 @@ Retrieve the database:
 ```{r}
 
 library(PDSdatabase)
+
+```
+
+
+```{r,eval=F}
+
 download_sqlite_db() #downloads to current working directory
 
 ```

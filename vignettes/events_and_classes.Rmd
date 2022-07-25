@@ -23,27 +23,3 @@ This vignette showcases the reported adverse events and event classes in the PDS
 
 - What are the most frequent adverse events and classes of events listed in reports across child development stages
 
-```{r}
-
-library(PDSdatabase)
-download_sqlite_db() #downloads to current working directory
-
-```
-
-Connect to the database:
-
-```{r}
-
-con <- connect_sqlite_db()
-
-```
-
-
-Disconnect database:
-
-```{r}
-
-disconnect_sqlite_db(con)
-
-```
-

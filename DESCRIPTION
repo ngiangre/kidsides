@@ -15,10 +15,16 @@ RoxygenNote: 7.2.0
 Imports: 
     DBI,
     RSQLite,
-    ggthemes
+    ggthemes,
+    ggplot,
+    rlang,
+    scales,
+    knitr
 Suggests:
     tidyverse,
     ggrepel,
     pacman
 URL: https://github.com/ngiangre/PDSdatabase,
     http://nickg.bio/PDSdatabase/
+VignetteBuilder: 
+    knitr

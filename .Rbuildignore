@@ -5,3 +5,9 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^.*\.sqlite$
+^\.ipynb_checkpoints$
+^\.ipynb$
+^README\.Rmd$
+^doc$
+^Meta$
