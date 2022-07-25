@@ -28,7 +28,7 @@ library(PDSdatabase)
 ```
 
 
-```{r,eval=F}
+```{r}
 
 download_sqlite_db() #downloads to current working directory
 
