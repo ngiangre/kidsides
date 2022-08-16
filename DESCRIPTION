@@ -25,6 +25,6 @@ Suggests:
     ggrepel,
     pacman
 URL: https://github.com/ngiangre/PDSdatabase,
-    http://nickg.bio/PDSdatabase/
+    http://nickgiangreco.netlify.app/PDSdatabase/
 VignetteBuilder: 
     knitr
