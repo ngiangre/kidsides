@@ -1,13 +1,13 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.3
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   drugs_and_classes: drugs_and_classes.html
   events_and_classes: events_and_classes.html
   getting_started: getting_started.html
   top_ade_model: top_ade_model.html
-last_built: 2022-07-10T15:02Z
+last_built: 2022-08-16T00:49Z
 urls:
-  reference: http://nickg.bio/PDSdatabase/reference
-  article: http://nickg.bio/PDSdatabase/articles
+  reference: http://nickgiangreco.netlify.app/PDSdatabase/reference
+  article: http://nickgiangreco.netlify.app/PDSdatabase/articles
 
