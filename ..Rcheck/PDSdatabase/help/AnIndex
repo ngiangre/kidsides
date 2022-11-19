@@ -1,3 +1,0 @@
-connect_sqlite_db	connect_sqlite_db
-disconnect_sqlite_db	disconnect_sqlite_db
-download_sqlite_db	download_sqlite_db

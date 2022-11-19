@@ -1,4 +1,0 @@
-connect_sqlite_db       Connect to the Pediatric Drug Safety database
-disconnect_sqlite_db    Disconnect from the Pediatric Drug Safety
-                        database
-download_sqlite_db      Download the Pediatric Drug Safety database
