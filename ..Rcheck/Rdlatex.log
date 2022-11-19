@@ -1,0 +1,312 @@
+Hmm ... looks like a package
+Converting parsed Rd's to LaTeX 
+Creating pdf output from LaTeX ...
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  Running 'texi2dvi' on 'Rd2.tex' failed.
+Messages:
+/usr/local/bin/texi2dvi: makeindex failed
+Output:
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-06-18>
+(./Rd2.tex
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2021/02/12 v1.4n Standard LaTeX document class
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty))
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)
+)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.te
+x
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.t
+ex
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex
+)))))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.c
+fg)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.
+def))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.st
+y
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexc
+mds.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarer
+r.sty))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkey
+s.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdef
+inekeys.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescap
+e.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxma
+cro.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.
+sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-la
+ngpatches.def)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.
+sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintc
+alc.sty))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.st
+y))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.s
+ty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerun
+filecheck.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniq
+uecounter.sty)))
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 394.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 394.
+
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-
+pdftex.def)
+No file Rd2.aux.
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/get
+titlestring.sty))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd)
+[1{/Users/nickgiangreco/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdfte
+x.map}]
+Overfull \hbox (28.10059pt too wide) in paragraph at lines 93--93
+ []  \T1/zi4/m/n/10 url = "https://pds-database.s3.amazonaws.com/effect_peds_19
+q2_v0.3_20211119.sqlite",[] 
+[2]
+No file Rd2.ind.
+[3]
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information){/Users/nickgiangreco/Libra
+ry/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/nickgiangreco/Library
+/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</Users/nickgiangre
+co/Library/TinyTeX/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.p
+fb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uh
+vr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 75901 bytes).
+Transcript written on Rd2.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-06-18>
+(./Rd2.tex
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2021/02/12 v1.4n Standard LaTeX document class
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+ (/Users
+
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-06-18>
+(./Rd2.tex
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2021/02/12 v1.4n Standard LaTeX document class
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty))
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty)
+)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/eucal.sty
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty)
+ (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.te
+x
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.t
+ex
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex
+)))))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.c
+fg)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.
+def))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.st
+y
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexc
+mds.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarer
+r.sty))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkey
+s.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdef
+inekeys.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescap
+e.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxma
+cro.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.
+sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-la
+ngpatches.def)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.
+sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintc
+alc.sty))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.st
+y))
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.s
+ty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerun
+filecheck.sty
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniq
+uecounter.sty)))
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 394.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 394.
+
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-
+pdftex.def)
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.aux)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.st
+y)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/get
+titlestring.sty))
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.out)
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.out)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+) (/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/Users/nickgiangreco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd)
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.toc) [1{/Users/nickgiangreco/Library/TinyTeX/texmf-var/fonts/map/p
+dftex/updmap/pdftex.map}]
+Overfull \hbox (28.10059pt too wide) in paragraph at lines 93--93
+ []  \T1/zi4/m/n/10 url = "https://pds-database.s3.amazonaws.com/effect_peds_19
+q2_v0.3_20211119.sqlite",[] 
+[2]
+No file Rd2.ind.
+[3]
+(/private/var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T/Rtmp1bCjng/Rd2pdfac3d
+7018418d/Rd2.aux) )
+(see the transcript file for additional information){/Users/nickgiangreco/Libra
+ry/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/nickgiangreco/Library
+/TinyTeX/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</Users/nickgiangre
+co/Library/TinyTeX/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.p
+fb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uh
+vr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/urw
+/times/utmr8a.pfb></Users/nickgiangreco/Library/TinyTeX/texmf-dist/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (3 pages, 76531 bytes).
+Transcript written on Rd2.log.
+Saving output to ‘PDSdatabase-manual.pdf’ ...
+Done
+You may want to clean up by 'rm -Rf /var/folders/00/hrw448cj27l47l_0f2lrz1rr0000gp/T//Rtmp1bCjng/Rd2pdfac3d7018418d'

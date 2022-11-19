@@ -16,7 +16,11 @@ knitr::opts_chunk$set(echo = TRUE,fig.height = 13,fig.width = 13)
 ```{r}
 library(PDSdatabase)
 library(rlang)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(ggthemes)
 
 theme_set(
     ggthemes::theme_tufte() + theme(text = element_text(size=16,face="bold"))
@@ -34,7 +38,7 @@ This vignette showcases the reported drugs and drug classes in the PDSdatabase:
 - What are the most frequent drugs and classes of drugs listed in reports across child development stages
 
 
-```{r}
+```{r, eval=FALSE}
 
 download_sqlite_db() #downloads to current working directory
 
@@ -59,6 +63,7 @@ The field `atc_concept_id` is the concept adentifier for each drug's ingredient 
 tbl(con,"ade_raw") %>% 
     distinct(atc_concept_id) %>% 
     count()
+
 ```
 
 The number of drug compounds across reports:
@@ -77,6 +82,7 @@ tbl(con,"ade_raw") %>%
     labs(x="Number of drugs listed in reports",
          y="Number of reports") +
     scale_y_continuous(trans="log10",labels=scales::comma) 
+
 ```
 
 # How many classes of drugs are listed in reports?

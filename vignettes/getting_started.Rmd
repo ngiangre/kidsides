@@ -28,7 +28,7 @@ library(PDSdatabase)
 ```
 
 
-```{r}
+```{r,eval=FALSE}
 
 download_sqlite_db() #downloads to current working directory
 
@@ -46,7 +46,10 @@ Do something:
 
 ```{r}
 
-pacman::p_load(tidyverse,DBI)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(stringr)
 
 drug_ <- "montelukast; oral"
 event_ <- "Nightmare"

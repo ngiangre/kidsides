@@ -11,24 +11,11 @@ Description: This package makes accessible thousands of observations, summaries,
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.2
-Imports: 
-    DBI,
-    RSQLite
-Suggests:
-    ggplot2,
-    tidyr,
-    stringr,
-    ggthemes,
-    rlang,
-    ggrepel,
-    scales,
-    pacman,
-    dplyr,
-    rmarkdown,
-    knitr
+Imports: DBI, RSQLite
+Suggests: ggplot2, tidyr, stringr, ggthemes, rlang, ggrepel, scales,
+        pacman, dplyr, rmarkdown, knitr
 URL: https://github.com/ngiangre/PDSdatabase,
-    http://nickg.bio/PDSdatabase/
-VignetteBuilder: 
-    knitr
-Depends: 
-    R (>= 2.10)
+        http://nickg.bio/PDSdatabase/
+VignetteBuilder: knitr
+Depends: R (>= 2.10)
+Built: R 4.2.2; ; 2022-11-19 21:03:10 UTC; unix

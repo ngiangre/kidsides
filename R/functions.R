@@ -34,7 +34,7 @@ download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect
 #'
 #' @rdname connect_sqlite_db
 #'
-#' @param dbname The path to the sqlite file
+#' @param dbname The name of the sqlite file
 #'
 #' @importFrom DBI dbConnect
 #' @importFrom RSQLite SQLite
@@ -42,8 +42,8 @@ download_sqlite_db <- function(url="https://pds-database.s3.amazonaws.com/effect
 #' @return SQLite connection, invisibly
 #' @export
 #'
-connect_sqlite_db <- function(dbname="./effect_peds_19q2_v0.3_20211119.sqlite"){
-    DBI::dbConnect(RSQLite::SQLite(),dbname=dbname)
+connect_sqlite_db <- function(dbname="effect_peds_19q2_v0.3_20211119.sqlite"){
+    DBI::dbConnect(RSQLite::SQLite(),dbname=file.path(dbname))
 }
 
 #' Disconnect from the Pediatric Drug Safety database

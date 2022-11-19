@@ -6,8 +6,9 @@
 ^pkgdown$
 ^\.github$
 ^.*\.sqlite$
-^\.ipynb_checkpoints$
+^vignettes/.ipynb_checkpoints
 ^\.ipynb$
 ^README\.Rmd$
 ^doc$
 ^Meta$
+^data-raw$

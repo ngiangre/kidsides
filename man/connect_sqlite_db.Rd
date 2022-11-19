@@ -4,10 +4,10 @@
 \alias{connect_sqlite_db}
 \title{Connect to the Pediatric Drug Safety database}
 \usage{
-connect_sqlite_db(dbname = "./effect_peds_19q2_v0.3_20211119.sqlite")
+connect_sqlite_db(dbname = "effect_peds_19q2_v0.3_20211119.sqlite")
 }
 \arguments{
-\item{dbname}{The path to the sqlite file}
+\item{dbname}{The name of the sqlite file}
 }
 \value{
 SQLite connection, invisibly

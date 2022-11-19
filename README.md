@@ -54,7 +54,7 @@ utilizing this data as-is is non-trivial, where the drug event report
 data is published in chunks as a nested json structure each quarter per
 year since the 1990s. With an API key with extended permissions, I
 developed custom python notebooks and scripts available in the
-‘openFDA\_drug\_event-parsing’ github repository (DOI:
+‘openFDA_drug_event-parsing’ github repository (DOI:
 <https://doi.org/10.5281/zenodo.4464544>) to extract and format all drug
 event reports prior to the third quarter of 2019. This observation-level
 data used, called Pediatric FAERS, for downstream analyses is stored in
@@ -112,8 +112,21 @@ library(PDSdatabase)
 # Usage
 
 ``` r
-pacman::p_load(tidyverse)
+library(dplyr)
+```
 
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 if(!("effect_peds_19q2_v0.3_20211119.sqlite" %in% list.files())){
     PDSdatabase::download_sqlite_db()
 }
@@ -167,20 +180,21 @@ dplyr::tbl(con,"ade_nichd") %>%
 ```
 
     ## # A tibble: 3,225,859 × 13
-    ##    atc_concept_id meddra_concept_id ade       nichd gam_score  norm gam_score_se
-    ##             <int>             <int> <chr>     <chr>     <dbl> <dbl>        <dbl>
-    ##  1        1588648          35809076 1588648_… term…    -0.131 0             2.48
-    ##  2        1588648          35809076 1588648_… infa…     0.947 0.166         1.98
-    ##  3        1588648          35809076 1588648_… todd…     2.03  0.332         1.79
-    ##  4        1588648          35809076 1588648_… earl…     3.11  0.499         1.86
-    ##  5        1588648          35809076 1588648_… midd…     4.21  0.667         2.10
-    ##  6        1588648          35809076 1588648_… earl…     5.30  0.834         2.52
-    ##  7        1588648          35809076 1588648_… late…     6.38  1             3.14
-    ##  8        1588648          36315755 1588648_… term…    -0.310 0             5.61
-    ##  9        1588648          36315755 1588648_… infa…     2.25  0.166         4.43
-    ## 10        1588648          36315755 1588648_… todd…     4.81  0.332         3.79
-    ## # … with 3,225,849 more rows, and 6 more variables: gam_score_90mse <dbl>,
-    ## #   gam_score_90pse <dbl>, D <int>, E <int>, DE <int>, ade_name <chr>
+    ##    atc_c…¹ meddr…² ade   nichd gam_s…³  norm gam_s…⁴ gam_s…⁵ gam_s…⁶     D     E
+    ##      <int>   <int> <chr> <chr>   <dbl> <dbl>   <dbl>   <dbl>   <dbl> <int> <int>
+    ##  1 1588648  3.58e7 1588… term…  -0.131 0        2.48 -4.21      3.95     0    20
+    ##  2 1588648  3.58e7 1588… infa…   0.947 0.166    1.98 -2.31      4.21     0    80
+    ##  3 1588648  3.58e7 1588… todd…   2.03  0.332    1.79 -0.923     4.98     0   107
+    ##  4 1588648  3.58e7 1588… earl…   3.11  0.499    1.86  0.0553    6.17     0   294
+    ##  5 1588648  3.58e7 1588… midd…   4.21  0.667    2.10  0.745     7.67     0  1046
+    ##  6 1588648  3.58e7 1588… earl…   5.30  0.834    2.52  1.15      9.44     1  2697
+    ##  7 1588648  3.58e7 1588… late…   6.38  1        3.14  1.21     11.5      0  1729
+    ##  8 1588648  3.63e7 1588… term…  -0.310 0        5.61 -9.53      8.91     0     0
+    ##  9 1588648  3.63e7 1588… infa…   2.25  0.166    4.43 -5.05      9.54     0     2
+    ## 10 1588648  3.63e7 1588… todd…   4.81  0.332    3.79 -1.43     11.1      0     6
+    ## # … with 3,225,849 more rows, 2 more variables: DE <int>, ade_name <chr>, and
+    ## #   abbreviated variable names ¹​atc_concept_id, ²​meddra_concept_id, ³​gam_score,
+    ## #   ⁴​gam_score_se, ⁵​gam_score_90mse, ⁶​gam_score_90pse
 
 ``` r
 dplyr::tbl(con,"ade") %>% 
@@ -188,20 +202,21 @@ dplyr::tbl(con,"ade") %>%
 ```
 
     ## # A tibble: 460,823 × 9
-    ##    ade    atc_concept_id meddra_concept_… cluster_id gt_null_statist… gt_null_99
-    ##    <chr>           <int>            <int> <chr>                 <dbl>      <dbl>
-    ##  1 15886…        1588648         35809076 2                         1          0
-    ##  2 15886…        1588648         36315755 2                         1          1
-    ##  3 15886…        1588648         36416514 2                         1          0
-    ##  4 15886…        1588648         37019318 2                         1          0
-    ##  5 15886…        1588648         37019399 2                         1          1
-    ##  6 15886…        1588648         37522220 2                         1          0
-    ##  7 15886…        1588697         35104746 4                         0          0
-    ##  8 15886…        1588697         35104812 2                         0          0
-    ##  9 15886…        1588697         35104824 2                         0          0
-    ## 10 15886…        1588697         35104834 4                         0          0
-    ## # … with 460,813 more rows, and 3 more variables: max_score_nichd <chr>,
-    ## #   cluster_name <chr>, ade_nreports <chr>
+    ##    ade           atc_c…¹ meddr…² clust…³ gt_nu…⁴ gt_nu…⁵ max_s…⁶ clust…⁷ ade_n…⁸
+    ##    <chr>           <int>   <int> <chr>     <dbl>   <dbl> <chr>   <chr>   <chr>  
+    ##  1 1588648_3580… 1588648  3.58e7 2             1       0 late_a… Increa… 1      
+    ##  2 1588648_3631… 1588648  3.63e7 2             1       1 late_a… Increa… 1      
+    ##  3 1588648_3641… 1588648  3.64e7 2             1       0 late_a… Increa… 1      
+    ##  4 1588648_3701… 1588648  3.70e7 2             1       0 late_a… Increa… 1      
+    ##  5 1588648_3701… 1588648  3.70e7 2             1       1 late_a… Increa… 1      
+    ##  6 1588648_3752… 1588648  3.75e7 2             1       0 late_a… Increa… 1      
+    ##  7 1588697_3510… 1588697  3.51e7 4             0       0 term_n… Decrea… 1      
+    ##  8 1588697_3510… 1588697  3.51e7 2             0       0 late_a… Increa… 1      
+    ##  9 1588697_3510… 1588697  3.51e7 2             0       0 late_a… Increa… 3      
+    ## 10 1588697_3510… 1588697  3.51e7 4             0       0 term_n… Decrea… 1      
+    ## # … with 460,813 more rows, and abbreviated variable names ¹​atc_concept_id,
+    ## #   ²​meddra_concept_id, ³​cluster_id, ⁴​gt_null_statistic, ⁵​gt_null_99,
+    ## #   ⁶​max_score_nichd, ⁷​cluster_name, ⁸​ade_nreports
 
 ``` r
 dplyr::tbl(con,"ade_raw") %>% 
@@ -209,22 +224,23 @@ dplyr::tbl(con,"ade_raw") %>%
 ```
 
     ## # A tibble: 2,326,383 × 23
-    ##    safetyreportid ade               atc_concept_id meddra_concept_id nichd sex  
-    ##    <chr>          <chr>                      <int>             <int> <chr> <chr>
-    ##  1 10003357       21602735_36717998       21602735          36717998 midd… Male 
-    ##  2 10003357       21602735_42890355       21602735          42890355 midd… Male 
-    ##  3 10003357       21602735_36718024       21602735          36718024 midd… Male 
-    ##  4 10003357       21603927_36717998       21603927          36717998 midd… Male 
-    ##  5 10003357       21603927_42890355       21603927          42890355 midd… Male 
-    ##  6 10003357       21603927_36718024       21603927          36718024 midd… Male 
-    ##  7 10003388       21600449_35205038       21600449          35205038 late… Fema…
-    ##  8 10003388       21600449_35205040       21600449          35205040 late… Fema…
-    ##  9 10003388       21600449_35809225       21600449          35809225 late… Fema…
-    ## 10 10003401       21600449_36110708       21600449          36110708 earl… Fema…
-    ## # … with 2,326,373 more rows, and 17 more variables:
-    ## #   reporter_qualification <chr>, receive_date <chr>, XA <dbl>, XB <dbl>,
-    ## #   XC <dbl>, XD <dbl>, XG <dbl>, XH <dbl>, XJ <dbl>, XL <dbl>, XM <dbl>,
-    ## #   XN <dbl>, XP <dbl>, XR <dbl>, XS <dbl>, XV <dbl>, polypharmacy <int>
+    ##    safetyr…¹ ade   atc_c…² meddr…³ nichd sex   repor…⁴ recei…⁵    XA    XB    XC
+    ##    <chr>     <chr>   <int>   <int> <chr> <chr> <chr>   <chr>   <dbl> <dbl> <dbl>
+    ##  1 10003357  2160…  2.16e7  3.67e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  2 10003357  2160…  2.16e7  4.29e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  3 10003357  2160…  2.16e7  3.67e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  4 10003357  2160…  2.16e7  3.67e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  5 10003357  2160…  2.16e7  4.29e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  6 10003357  2160…  2.16e7  3.67e7 midd… Male  Other … 2014-0…     0     0     0
+    ##  7 10003388  2160…  2.16e7  3.52e7 late… Fema… Consum… 2014-0…     0     0     1
+    ##  8 10003388  2160…  2.16e7  3.52e7 late… Fema… Consum… 2014-0…     0     0     1
+    ##  9 10003388  2160…  2.16e7  3.58e7 late… Fema… Consum… 2014-0…     0     0     1
+    ## 10 10003401  2160…  2.16e7  3.61e7 earl… Fema… Consum… 2014-0…     0     0     1
+    ## # … with 2,326,373 more rows, 12 more variables: XD <dbl>, XG <dbl>, XH <dbl>,
+    ## #   XJ <dbl>, XL <dbl>, XM <dbl>, XN <dbl>, XP <dbl>, XR <dbl>, XS <dbl>,
+    ## #   XV <dbl>, polypharmacy <int>, and abbreviated variable names
+    ## #   ¹​safetyreportid, ²​atc_concept_id, ³​meddra_concept_id,
+    ## #   ⁴​reporter_qualification, ⁵​receive_date
 
 ``` r
 disconnect_sqlite_db(con)

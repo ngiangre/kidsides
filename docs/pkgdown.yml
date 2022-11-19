@@ -1,4 +1,4 @@
-pandoc: '2.18'
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
@@ -6,8 +6,8 @@ articles:
   events_and_classes: events_and_classes.html
   getting_started: getting_started.html
   top_ade_model: top_ade_model.html
-last_built: 2022-08-16T00:49Z
+last_built: 2022-11-19T20:40Z
 urls:
-  reference: http://nickgiangreco.netlify.app/PDSdatabase/reference
-  article: http://nickgiangreco.netlify.app/PDSdatabase/articles
+  reference: http://nickg.bio/PDSdatabase/reference
+  article: http://nickg.bio/PDSdatabase/articles
 
