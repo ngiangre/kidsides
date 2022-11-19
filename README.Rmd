@@ -58,7 +58,7 @@ library(PDSdatabase)
 
 ```{r}
 
-pacman::p_load(tidyverse)
+library(dplyr)
 
 if(!("effect_peds_19q2_v0.3_20211119.sqlite" %in% list.files())){
     PDSdatabase::download_sqlite_db()

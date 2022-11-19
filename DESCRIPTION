@@ -14,17 +14,17 @@ LazyData: true
 RoxygenNote: 7.2.0
 Imports: 
     DBI,
-    RSQLite,
-    ggthemes,
-    ggplot2,
-    rlang,
-    scales,
-    knitr
+    RSQLite
 Suggests:
-    tidyverse,
+    ggplot2,
+    ggthemes,
+    rlang,
     ggrepel,
-    pacman
+    scales,
+    pacman,
+    dplyr,
+    knitr
 URL: https://github.com/ngiangre/PDSdatabase,
-    http://nickgiangreco.netlify.app/PDSdatabase/
+    http://nickg.bio/PDSdatabase/
 VignetteBuilder: 
     knitr
