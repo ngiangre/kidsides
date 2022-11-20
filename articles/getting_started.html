@@ -68,7 +68,8 @@
 
 
 
-<script src="getting_started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Getting Started</h1>
             
@@ -82,11 +83,22 @@
 <div class="section level2">
 <h2 id="pdsdatabase">PDSdatabase<a class="anchor" aria-label="anchor" href="#pdsdatabase"></a>
 </h2>
-<p>The main thesis behind this published resource is that children have adverse events after drug exposure not just from the disease process but also from the biological processes from their growth and development. The National Institute of Child and Human Development defines 7 stages of child development for which we estimate signals: term neonate (0-27 days), infancy (28 days-1 years), toddler (1 year-2 years), early childhood (2-5 years), middle childhood (6-11 years), early adolescence 12-17 years, and late adolescence (18-21 years). The database contains tables of drug safety signals with drug, adverse event, and biological ontologies to facilitate teasing apart influences and contributions adverse drug events during childhood.</p>
+<p>The main thesis behind this published resource is that children have
+adverse events after drug exposure not just from the disease process but
+also from the biological processes from their growth and development.
+The National Institute of Child and Human Development defines 7 stages
+of child development for which we estimate signals: term neonate (0-27
+days), infancy (28 days-1 years), toddler (1 year-2 years), early
+childhood (2-5 years), middle childhood (6-11 years), early adolescence
+12-17 years, and late adolescence (18-21 years). The database contains
+tables of drug safety signals with drug, adverse event, and biological
+ontologies to facilitate teasing apart influences and contributions
+adverse drug events during childhood.</p>
 <div class="section level3">
 <h3 id="an-example">An example<a class="anchor" aria-label="anchor" href="#an-example"></a>
 </h3>
-<p>The package helps with identifying, retrieving, and loading the database.</p>
+<p>The package helps with identifying, retrieving, and loading the
+database.</p>
 <p>Retrieve the database:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ngiangre/PDSdatabase" class="external-link">PDSdatabase</a></span><span class="op">)</span></span></code></pre></div>
@@ -97,7 +109,19 @@
 <code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Do something:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>,<span class="va">DBI</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     filter, lag</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">drug_</span> <span class="op">&lt;-</span> <span class="st">"montelukast; oral"</span></span>
 <span><span class="va">event_</span> <span class="op">&lt;-</span> <span class="st">"Nightmare"</span></span>
@@ -159,12 +183,19 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ade_name</span><span class="op">==</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">drug_</span>,<span class="st">" and "</span>,<span class="va">event_</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu">plot_ade_risks</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span></code></pre>
 <p><img src="getting_started_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>The labelled numbers are the number of observed drug reports with the adverse event. The red bars and intervals are the estimated signal of the drug exposure’s effect on the occurrence of an adverse event at that child development stage. In this context, risk and signal estimate are synonymous - we use a risk model to generate drug safety signals.</p>
+<p>The labelled numbers are the number of observed drug reports with the
+adverse event. The red bars and intervals are the estimated signal of
+the drug exposure’s effect on the occurrence of an adverse event at that
+child development stage. In this context, risk and signal estimate are
+synonymous - we use a risk model to generate drug safety signals.</p>
 <p>Disconnect database:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/disconnect_sqlite_db.html">disconnect_sqlite_db</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
-<p>There is so much that can be done with this and the other data found in this database. Stay tuned for more vignettes!</p>
+<p>There is so much that can be done with this and the other data found
+in this database. Stay tuned for more vignettes!</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
