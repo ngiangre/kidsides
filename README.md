@@ -3,7 +3,8 @@ PDSdatabase
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml)
+[![check-release](https://github.com/ngiangre/PDSdatabase/actions/workflows/check-release.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/check-release.yaml)
+[![pkgdown](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 # Summary
