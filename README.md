@@ -1,6 +1,11 @@
 PDSdatabase
 ================
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 # Summary
 
 This R data package contains observation, summary, and model-level data
