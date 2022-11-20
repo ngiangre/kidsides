@@ -16,6 +16,7 @@ Imports:
     RSQLite
 Suggests:
     ggplot2,
+    dbplyr,
     tidyr,
     stringr,
     ggthemes,
