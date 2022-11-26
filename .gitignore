@@ -4,6 +4,7 @@
 .Ruserdata
 .DS_Store
 *.sqlite
+vignettes/*.sqlite
 docs
 /doc/
 /Meta/
