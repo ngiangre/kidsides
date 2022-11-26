@@ -27,8 +27,7 @@ Suggests:
     dplyr,
     rmarkdown,
     knitr
-URL: https://github.com/ngiangre/PDSdatabase,
-    http://nickg.bio/PDSdatabase/
+URL: https://github.com/ngiangre/PDSdatabase, http://ngiangre.github.io/PDSdatabase
 VignetteBuilder: 
     knitr
 Depends: 

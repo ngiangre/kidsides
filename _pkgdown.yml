@@ -1,4 +1,6 @@
-url: http://nickg.bio/PDSdatabase/
+url: http://ngiangre.github.io/PDSdatabase
+destination: docs
+
 template:
   bootstrap: 5
 
