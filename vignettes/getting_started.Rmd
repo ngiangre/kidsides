@@ -30,7 +30,7 @@ library(PDSdatabase)
 
 ```{r}
 
-download_sqlite_db() #downloads to current working directory
+download_sqlite_db() #downloads to cache, if not already there
 
 ```
 
@@ -93,8 +93,8 @@ plot_ade_risks <- function(x,color="red",theme=theme_big,ts=5){
       vjust=1.3,fontface="bold",size=ts) +
     geom_point(color=color,size=2) +
     geom_errorbar(aes(ymin=gam_score_90mse,ymax=gam_score_90pse),
-                  width=0.1,color=color,size=1) +
-    geom_hline(yintercept = 0,color="black",size=0.5) +
+                  width=0.1,color=color,linewidth=1) +
+    geom_hline(yintercept = 0,color="black",linewidth=0.5) +
     facet_wrap(~ade_name,labeller = label_wrap_gen(width = 20)) +
     xlab("") +
     ylab("Risk of ADE (GAM log odds)") + 
