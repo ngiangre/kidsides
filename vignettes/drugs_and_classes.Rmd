@@ -40,7 +40,7 @@ This vignette showcases the reported drugs and drug classes in the PDSdatabase:
 
 ```{r}
 
-download_sqlite_db() #downloads to current working directory
+download_sqlite_db() #downloads to cache, if not already there
 
 ```
 
