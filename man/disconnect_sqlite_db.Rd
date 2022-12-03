@@ -16,7 +16,7 @@ TRUE, invisibly
 This function disconnects the sqlite database connection.
 }
 \examples{
-\donttest{
+\dontrun{
    get_db_path()
 }
 }

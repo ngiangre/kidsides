@@ -1,6 +1,6 @@
 Package: PDSdatabase
 Title: Download and Connect to the PDSdatabase
-Version: 0.1.0
+Version: 0.2.0
 Author: Nicholas Giangreco
 Maintainer: Nicholas Giangreco <nick.giangreco@gmail.com>
 Description: This package makes accessible thousands of observations, summaries, and model estimates of pediatric drug effect signals. 

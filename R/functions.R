@@ -88,7 +88,7 @@ connect_sqlite_db <- function(){
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'    get_db_path()
 #' }
 disconnect_sqlite_db <- function(con){
@@ -105,7 +105,7 @@ disconnect_sqlite_db <- function(con){
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   get_db_path()
 #'}
 get_db_path <- function(){
