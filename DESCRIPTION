@@ -1,6 +1,6 @@
 Package: PDSdatabase
 Title: Download and Connect to the PDSdatabase
-Version: 0.2.0
+Version: 0.3.0
 Author: Nicholas Giangreco
 Maintainer: Nicholas Giangreco <nick.giangreco@gmail.com>
 Description: This package makes accessible thousands of observations, summaries, and model estimates of pediatric drug effect signals. 
@@ -8,7 +8,7 @@ Description: This package makes accessible thousands of observations, summaries,
     The observations are from the Food and Drug Administration's Adverse Event Reporting System. 
     Drug effect estimates were estimated across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
     See the methods detailed in Chapter 3 of the thesis. 
-License: MIT + file LICENSE
+License: CC BY 4.0 + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.2
 Imports: 
