@@ -15,3 +15,8 @@ TRUE, invisibly
 \description{
 This function disconnects the sqlite database connection.
 }
+\examples{
+\donttest{
+   get_db_path()
+}
+}

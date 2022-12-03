@@ -5,30 +5,29 @@
 \title{Download the Pediatric Drug Safety database}
 \usage{
 download_sqlite_db(
-  url = "https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite",
-  path = "./",
-  destfile = paste0(path, "effect_peds_19q2_v0.3_20211119.sqlite"),
   method = "auto",
-  quiet = TRUE,
-  timeout = 360
+  quiet = FALSE,
+  timeout = 360,
+  force = FALSE
 )
 }
 \arguments{
-\item{url}{The url of the sqlite database}
-
-\item{path}{The path where to dump the sqlite database.}
-
-\item{destfile}{The path and filename where to dump the sqlite database. See \code{download.file}}
-
 \item{method}{The method to download the sqlite database. See \code{download.file}}
 
 \item{quiet}{Whether to download quietly. See \code{download.file}}
 
 \item{timeout}{Extended download session for downloading tihs file. Default is 360 seconds.}
+
+\item{force}{Whether to force the download of the database. Defaults to FALSE.}
 }
 \value{
 TRUE, invisibly
 }
 \description{
 Thus function downloads the database published in Giangreco et al. 2022.
+}
+\examples{
+\dontrun{
+download_sqlite_db()
+}
 }

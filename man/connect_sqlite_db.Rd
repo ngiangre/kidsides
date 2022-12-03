@@ -4,14 +4,18 @@
 \alias{connect_sqlite_db}
 \title{Connect to the Pediatric Drug Safety database}
 \usage{
-connect_sqlite_db(dbname = "effect_peds_19q2_v0.3_20211119.sqlite")
-}
-\arguments{
-\item{dbname}{The name of the sqlite file}
+connect_sqlite_db()
 }
 \value{
-SQLite connection, invisibly
+SQLite connection
 }
 \description{
 This function makes a sqlite connection from the downloaded database.
+}
+\examples{
+\dontrun{
+download_sqlite_db()
+con <- connect_sqlite_db()
+disconnect_sqlite_db(con)
+}
 }
