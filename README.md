@@ -5,6 +5,7 @@ PDSdatabase
 
 [![check-release](https://github.com/ngiangre/PDSdatabase/actions/workflows/check-release.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/check-release.yaml)
 [![pkgdown](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml)
+[![R-CMD-check](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # Installation
