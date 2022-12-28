@@ -1,12 +1,9 @@
 pandoc: 2.19.2
-pkgdown: 2.0.6
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  drugs_and_classes: drugs_and_classes.html
-  events_and_classes: events_and_classes.html
-  getting_started: getting_started.html
-  top_ade_model: top_ade_model.html
-last_built: 2022-12-04T02:58Z
+  PDSdatabase: PDSdatabase.html
+last_built: 2022-12-28T18:30Z
 urls:
   reference: https://ngiangre.github.io/PDSdatabase/reference
   article: https://ngiangre.github.io/PDSdatabase/articles
