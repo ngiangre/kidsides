@@ -82,11 +82,11 @@ We invented the disproportionality generalized additive model (dGAM) method for 
 
 # PDSportal: accessible data access
 
-We provide the [PDSportal](http://pdsportal.shinyapps.io/pdsportal/) as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology. 
+We provide the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/) as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology. 
 
 # PDSdatabase
 
-The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://ssrn.com/abstract=3898786).
+The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://www.github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
 
