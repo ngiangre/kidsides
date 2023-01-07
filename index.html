@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="index.html">kidsides</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="pdsdatabase">PDSdatabase<a class="anchor" aria-label="anchor" href="#pdsdatabase"></a>
+<div class="page-header"><h1 id="kidsides">KidSIDES<a class="anchor" aria-label="anchor" href="#kidsides"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -74,7 +74,7 @@
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ngiangre/PDSdatabase"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ngiangre/kidsides"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
@@ -100,11 +100,11 @@
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">PDSdatabase</span><span class="op">)</span></span>
-<span><span class="fu">PDSdatabase</span><span class="fu">::</span><span class="fu">download_sqlite_db</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## /Users/nickgiangreco/Library/Caches/org.R-project.R/R/PDSdatabase/effect_peds_19q2_v0.3_20211119.sqlite already exists!</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.github.com/ngiangre/kidsides" class="external-link">kidsides</a></span><span class="op">)</span></span>
+<span><span class="fu">kidsides</span><span class="fu">::</span><span class="fu"><a href="reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Attempt failed to check sqlite exists or to download from the URL: https://tlab-kidsides.s3.amazonaws.com/data/effect_peds_19q2_v0.3_20211119.sqlite.gz</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">PDSdatabase</span><span class="fu">::</span><span class="fu">connect_sqlite_db</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">kidsides</span><span class="fu">::</span><span class="fu"><a href="reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "ade"                                           </span></span>
@@ -201,7 +201,7 @@
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ¹​safetyreportid, ²​atc_concept_id, ³​meddra_concept_id,</span></span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">## #   ⁴​reporter_qualification, ⁵​receive_date</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">PDSdatabase</span><span class="fu">::</span><span class="fu">disconnect_sqlite_db</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">kidsides</span><span class="fu">::</span><span class="fu"><a href="reference/disconnect_sqlite_db.html">disconnect_sqlite_db</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
@@ -231,12 +231,12 @@
 <div class="section level1">
 <h1 id="pdsportal-accessible-data-access">PDSportal: accessible data access<a class="anchor" aria-label="anchor" href="#pdsportal-accessible-data-access"></a>
 </h1>
-<p>We provide the <a href="http://pdsportal.shinyapps.io/pdsportal/" class="external-link">PDSportal</a> as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology.</p>
+<p>We provide the <a href="https://pdsportal.shinyapps.io/pdsportal/" class="external-link">PDSportal</a> as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology.</p>
 </div>
 <div class="section level1">
-<h1 id="pdsdatabase-1">PDSdatabase<a class="anchor" aria-label="anchor" href="#pdsdatabase-1"></a>
+<h1 id="kidsides-1">KidSIDES<a class="anchor" aria-label="anchor" href="#kidsides-1"></a>
 </h1>
-<p>The <code>PDSdatabase</code> R package downloads a sqlite database to your local machine and connects to the database using the <code>DBI</code> R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the <a href="https://github.com/ngiangre/pediatric_ade_database_study" class="external-link">code repository</a> for the <a href="https://ssrn.com/abstract=3898786" class="external-link">paper</a>.</p>
+<p>The <code>KidSIDES</code> R package downloads a sqlite database to your local machine and connects to the database using the <code>DBI</code> R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the <a href="https://www.github.com/ngiangre/pediatric_ade_database_study" class="external-link">code repository</a> for the <a href="https://www.ssrn.com/abstract=3898786" class="external-link">paper</a>.</p>
 </div>
 <div class="section level1">
 <h1 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -271,9 +271,9 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
-<li><a href="https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/gh/ngiangre/PDSdatabase?branch=main" class="external-link"><img src="https://codecov.io/gh/ngiangre/PDSdatabase/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/ngiangre/kidsides?branch=main" class="external-link"><img src="https://codecov.io/gh/ngiangre/kidsides/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
