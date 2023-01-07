@@ -1,6 +1,6 @@
 #' Download the Pediatric Drug Safety database
 #'
-#' Thus function downloads the database published in Giangreco et al. 2022.
+#' Download the database published in Giangreco et al. 2022.
 #'
 #' @param method The method to download the sqlite database. See \code{download.file}
 #' @param quiet Whether to download quietly. See \code{download.file}
@@ -11,7 +11,7 @@
 #' @return TRUE, invisibly
 #' @export
 #'
-#' @importFrom utils download.file
+#' @importFrom R.utils downloadFile gunzip
 #' @importFrom tools R_user_dir
 #'
 #' @examples
@@ -29,22 +29,29 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
         options(timeout=newTimeout)
     }
 
-    if(!file.exists(get_db_path()[['dest_file']]) | force){
-        download.file(
+    if(!file.exists(get_db_path()[['destname']]) | force){
+        R.utils::downloadFile(
             url = get_db_path()[['url']],
-            destfile = get_db_path()[['dest_file']],
+            filename = get_db_path()[['dest_file']],
             method = method,
             quiet = quiet
         )
+        R.utils::gunzip(
+            get_db_path()[['dest_file']],
+            get_db_path()[['destname']],
+            overwrite=T
+            )
+
     }else if(file.exists(get_db_path()[['dest_file']])){
         message(paste0(
             get_db_path()[['dest_file']]," already exists!"
             ))
     }else{
         message(paste0(
-            "Attempt failed to check sqlite exists or download from url ",
-            "(",get_db_path()[['url']],")"
-        ))
+            "Attempt failed to check sqlite exists",
+            " or to download from the URL: ",
+            get_db_path()[['url']])
+            )
     }
 
     # reset to old user options
@@ -54,7 +61,7 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
 
 #' Connect to the Pediatric Drug Safety database
 #'
-#' This function makes a sqlite connection from the downloaded database.
+#' Establish a sqlite connection from the downloaded database.
 #'
 #' @rdname connect_sqlite_db
 #'
@@ -71,12 +78,12 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
 #' disconnect_sqlite_db(con)
 #' }
 connect_sqlite_db <- function(){
-    DBI::dbConnect(RSQLite::SQLite(),dbname=get_db_path()[['dest_file']])
+    DBI::dbConnect(RSQLite::SQLite(),dbname=get_db_path()[['destname']])
 }
 
 #' Disconnect from the Pediatric Drug Safety database
 #'
-#' This function disconnects the sqlite database connection.
+#' Disconnect the sqlite database connection.
 #'
 #' @rdname disconnect_sqlite_db
 #'
@@ -112,10 +119,10 @@ get_db_path <- function(){
 
     url <- sqlite_file <- path <- full_path <- lst <- NULL
 
-    url <- "https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite"
-    sqlite_file <- "effect_peds_19q2_v0.3_20211119.sqlite"
+    url <- "https://tlab-kidsides.s3.amazonaws.com/data/effect_peds_19q2_v0.3_20211119.sqlite.gz"
+    sqlite_gz_file <- basename(url)
 
-    path <- tools::R_user_dir("PDSdatabase",which = "cache")
+    path <- tools::R_user_dir("kidsides",which = "cache")
 
     full_path <- paste0(dirname(path),"/",
                        basename(path))
@@ -125,9 +132,10 @@ get_db_path <- function(){
     }
 
     lst <- list()
-    lst[['url']] <- "https://pds-database.s3.amazonaws.com/effect_peds_19q2_v0.3_20211119.sqlite"
-    lst[['sqlite_file']] <- "effect_peds_19q2_v0.3_20211119.sqlite"
-    lst[['dest_file']] <- paste0(full_path,"/",sqlite_file)
+    lst[['url']] <- url
+    lst[['dest_file']] <- paste0(full_path,"/",sqlite_gz_file)
+    lst[['sqlite_file']] <- strsplit(sqlite_gz_file,"\\.gz")[[1]][1]
+    lst[['destname']] <- paste0(full_path,"/",lst[['sqlite_file']])
     lst
 
 }

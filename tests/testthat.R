@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(PDSdatabase)
+library(kidsides)
 
-test_check("PDSdatabase")
+test_check("kidsides")

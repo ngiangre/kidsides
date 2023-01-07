@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# PDSdatabase
+# KidSIDES
 
 The main thesis behind this published resource is that children have adverse events after drug exposure not just from the disease process but also from the biological processes from their growth and development. The National Institute of Child and Human Development defines 7 stages of child development for which we estimate signals: term neonate (0-27 days), infancy (28 days-1 years), toddler (1 year-2 years), early childhood (2-5 years), middle childhood (6-11 years), early adolescence 12-17 years, and late adolescence (18-21 years). The database contains tables of drug safety signals with drug, adverse event, and biological ontologies to facilitate teasing apart influences and contributions adverse drug events during childhood. 
 
@@ -23,7 +23,7 @@ Retrieve the database:
 
 ```{r}
 
-library(PDSdatabase)
+library(kidsides)
 
 ```
 

@@ -10,7 +10,7 @@ connect_sqlite_db()
 SQLite connection
 }
 \description{
-This function makes a sqlite connection from the downloaded database.
+Establish a sqlite connection from the downloaded database.
 }
 \examples{
 \dontrun{

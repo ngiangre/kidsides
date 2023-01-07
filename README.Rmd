@@ -1,5 +1,5 @@
 ---
-title: "PDSdatabase"
+title: "KidSIDES"
 output: github_document
 ---
 
@@ -35,10 +35,10 @@ This data resource can be used under the [CC BY 4.0](https://creativecommons.org
 ```{r}
 
 library(dplyr)
-library(PDSdatabase)
-PDSdatabase::download_sqlite_db()
+library(kidsides)
+kidsides::download_sqlite_db()
 
-con <- PDSdatabase::connect_sqlite_db()
+con <- kidsides::connect_sqlite_db()
 
 DBI::dbListTables(con)
 
@@ -55,7 +55,7 @@ dplyr::tbl(con,"ade_raw") %>%
     dplyr::collect()
 
 
-PDSdatabase::disconnect_sqlite_db(con)
+kidsides::disconnect_sqlite_db(con)
 
 ```
 
@@ -84,9 +84,9 @@ We invented the disproportionality generalized additive model (dGAM) method for 
 
 We provide the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/) as an accessible web application as well as a plaatform to download our database for the community to explore from identifying safety endpoints in clinical trials to evaluating known and novel developmental pharmacology. 
 
-# PDSdatabase
+# KidSIDES
 
-The `PDSdatabase` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://www.github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://www.ssrn.com/abstract=3898786).
+The `KidSIDES` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://www.github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
 

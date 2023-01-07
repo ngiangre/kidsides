@@ -13,7 +13,7 @@ disconnect_sqlite_db(con)
 TRUE, invisibly
 }
 \description{
-This function disconnects the sqlite database connection.
+Disconnect the sqlite database connection.
 }
 \examples{
 \dontrun{

@@ -24,7 +24,7 @@ download_sqlite_db(
 TRUE, invisibly
 }
 \description{
-Thus function downloads the database published in Giangreco et al. 2022.
+Download the database published in Giangreco et al. 2022.
 }
 \examples{
 \dontrun{
