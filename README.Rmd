@@ -4,9 +4,9 @@ output: github_document
 ---
 
 <!-- badges: start -->
-[![pkgdown](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml)
-[![R-CMD-check](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/ngiangre/PDSdatabase/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ngiangre/PDSdatabase?branch=main)
+[![pkgdown](https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml)
+[![R-CMD-check](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/ngiangre/kidsides/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ngiangre/kidsides?branch=main)
 <!-- badges: end -->
  
  
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Installation
 
 ```{r,eval=FALSE}
-remotes::install_github("ngiangre/PDSdatabase")
+remotes::install_github("ngiangre/kidsides")
 ```
 
 # Summary
@@ -86,7 +86,7 @@ We provide the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/) as an acce
 
 # KidSIDES
 
-The `KidSIDES` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://www.github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://www.ssrn.com/abstract=3898786).
+The `kidsides` R package downloads a sqlite database to your local machine and connects to the database using the `DBI` R package. This is a novel data resource of half a million pediatric drug safety signals across growth and development stages. Please see the references for details on data fields and the [code repository](https://www.github.com/ngiangre/pediatric_ade_database_study) for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
 

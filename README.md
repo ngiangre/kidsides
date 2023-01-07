@@ -1,18 +1,18 @@
-PDSdatabase
+KidSIDES
 ================
 
 <!-- badges: start -->
 
-[![pkgdown](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/pkgdown.yaml)
-[![R-CMD-check](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/PDSdatabase/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/ngiangre/kidsides/actions/workflows/pkgdown.yaml)
+[![R-CMD-check](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/ngiangre/PDSdatabase/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ngiangre/PDSdatabase?branch=main)
+coverage](https://codecov.io/gh/ngiangre/kidsides/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ngiangre/kidsides?branch=main)
 <!-- badges: end -->
 
 # Installation
 
 ``` r
-remotes::install_github("ngiangre/PDSdatabase")
+remotes::install_github("ngiangre/kidsides")
 ```
 
 # Summary
@@ -51,14 +51,14 @@ library(dplyr)
     ##     intersect, setdiff, setequal, union
 
 ``` r
-library(PDSdatabase)
-PDSdatabase::download_sqlite_db()
+library(kidsides)
+kidsides::download_sqlite_db()
 ```
 
-    ## /Users/nickgiangreco/Library/Caches/org.R-project.R/R/PDSdatabase/effect_peds_19q2_v0.3_20211119.sqlite already exists!
+    ## Attempt failed to check sqlite exists or to download from the URL: https://tlab-kidsides.s3.amazonaws.com/data/effect_peds_19q2_v0.3_20211119.sqlite.gz
 
 ``` r
-con <- PDSdatabase::connect_sqlite_db()
+con <- kidsides::connect_sqlite_db()
 
 DBI::dbListTables(con)
 ```
@@ -170,7 +170,7 @@ dplyr::tbl(con,"ade_raw") %>%
     ## #   ⁴​reporter_qualification, ⁵​receive_date
 
 ``` r
-PDSdatabase::disconnect_sqlite_db(con)
+kidsides::disconnect_sqlite_db(con)
 ```
 
 # Background
@@ -241,21 +241,21 @@ specification and details on the GAM.
 
 # PDSportal: accessible data access
 
-We provide the [PDSportal](http://pdsportal.shinyapps.io/pdsportal/) as
+We provide the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/) as
 an accessible web application as well as a plaatform to download our
 database for the community to explore from identifying safety endpoints
 in clinical trials to evaluating known and novel developmental
 pharmacology.
 
-# PDSdatabase
+# KidSIDES
 
-The `PDSdatabase` R package downloads a sqlite database to your local
+The `KidSIDES` R package downloads a sqlite database to your local
 machine and connects to the database using the `DBI` R package. This is
 a novel data resource of half a million pediatric drug safety signals
 across growth and development stages. Please see the references for
 details on data fields and the [code
-repository](https://github.com/ngiangre/pediatric_ade_database_study)
-for the [paper](https://ssrn.com/abstract=3898786).
+repository](https://www.github.com/ngiangre/pediatric_ade_database_study)
+for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
 

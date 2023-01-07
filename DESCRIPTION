@@ -1,6 +1,6 @@
 Package: kidsides
 Title: Download and Connect to KidSIDES
-Version: 0.3.0
+Version: 0.4.0
 Author: Nicholas Giangreco
 Maintainer: Nicholas Giangreco <nick.giangreco@gmail.com>
 Description: Makes accessible a sqlite database containing thousands of observations, summaries, and model estimates of pediatric drug safety signals. 
@@ -31,7 +31,7 @@ Suggests:
     knitr,
     covr,
     testthat (>= 3.0.0)
-URL: https://www.github.com/ngiangre/PDSdatabase, https://www.ngiangre.github.io/PDSdatabase
+URL: https://www.github.com/ngiangre/kidsides, https://www.ngiangre.github.io/kidsides
 VignetteBuilder: 
     knitr
 Depends: 
