@@ -1,16 +1,18 @@
 Package: kidsides
-Title: Download, cache, and connect to KidSIDES
+Title: Download, Cache, and Connect to KidSIDES
 Version: 0.4.0
 Authors@R: c(
-    person("Nicholas", "Giangreco", , "nick.giangreco@gmail.com", role = c("aut","cph"),
-           comment = c(ORCID = "0000-0001-8138-4947"))
+    person("Nicholas", "Giangreco", 
+    email = "nick.giangreco@gmail.com", 
+    role = c("aut","cph","cre"),
+    comment = c(ORCID = "0000-0001-8138-4947"))
            )
 Maintainer: Nicholas Giangreco <nick.giangreco@gmail.com>
 Description: Caches and connects to a sqlite database containing half a million pediatric drug safety signals. 
-    The database was created by Nicholas Giangreco during his PhD thesis which you can read here <https://doi.org/10.7916/d8-5d9b-6738>. 
+    The database was created by Nicholas Giangreco during his PhD thesis which you can read here <doi:10.7916/d8-5d9b-6738>. 
     The observations are from the Food and Drug Administration's Adverse Event Reporting System. Generalized additive models estimated
     drug effects across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
-    Read more at the methods detailed in Giangreco 2022 <https://doi.org/10.1016/j.medj.2022.06.001>. 
+    Read more at the methods detailed in Giangreco 2022 <doi:10.1016/j.medj.2022.06.001>. 
 License: CC BY 4.0 + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.2
@@ -34,7 +36,7 @@ Suggests:
     knitr,
     covr,
     testthat (>= 3.0.0)
-URL: https://www.github.com/ngiangre/kidsides, https://www.ngiangre.github.io/kidsides
+URL: https://github.com/ngiangre/kidsides, https://ngiangre.github.io/kidsides/
 VignetteBuilder: 
     knitr
 Depends: 

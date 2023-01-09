@@ -249,12 +249,12 @@ pharmacology.
 
 # KidSIDES
 
-The `KidSIDES` R package downloads a sqlite database to your local
+The `kidsides` R package downloads a sqlite database to your local
 machine and connects to the database using the `DBI` R package. This is
 a novel data resource of half a million pediatric drug safety signals
 across growth and development stages. Please see the references for
 details on data fields and the [code
-repository](https://www.github.com/ngiangre/pediatric_ade_database_study)
+repository](https://github.com/ngiangre/pediatric_ade_database_study)
 for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
