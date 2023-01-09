@@ -1,13 +1,13 @@
 Package: kidsides
-Title: Download and Connect to KidSIDES
+Title: Download, cache, and connect to KidSIDES
 Version: 0.4.0
 Author: Nicholas Giangreco
 Maintainer: Nicholas Giangreco <nick.giangreco@gmail.com>
-Description: Makes accessible a sqlite database containing thousands of observations, summaries, and model estimates of pediatric drug safety signals. 
-    The database was created by Nicholas during his PhD thesis which you can read here <https://doi.org/10.7916/d8-5d9b-6738>. 
-    The observations are from the Food and Drug Administration's Adverse Event Reporting System. 
-    Drug effect estimates were estimated across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
-    See the methods detailed in te references. 
+Description: Caches and connects to a sqlite database containing half a million pediatric drug safety signals. 
+    The database was created by Nicholas Giangreco during his PhD thesis which you can read here <https://doi.org/10.7916/d8-5d9b-6738>. 
+    The observations are from the Food and Drug Administration's Adverse Event Reporting System. Generalized additive models estimated
+    drug effects across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
+    Read more at the methods detailed in our paper published in Med <https://doi.org/10.1016/j.medj.2022.06.001>. 
 License: CC BY 4.0 + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.2
