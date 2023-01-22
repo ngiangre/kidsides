@@ -1,6 +1,6 @@
 # kidsides 0.4.1
 
-* Added `on.exit` code, added `askYesNo` ppermission before downloading the database forv the first time, and increased default timeout for function `download_sqlite_db`
+* Added `on.exit` code, added `askYesNo` permission before downloading the database for the first time, and increased default timeout for function `download_sqlite_db`
 * changed '\dontrun' examples to run if interactive, instead.
 
 # kidsides 0.4.0

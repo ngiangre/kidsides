@@ -15,5 +15,3 @@
 ^data-raw$
 ^codecov\.yml$
 archive
-*.tar.gz
-*.Rcheck/
