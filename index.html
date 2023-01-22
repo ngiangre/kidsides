@@ -5,9 +5,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Caches and then connects to a sqlite database containing half a million pediatric drug safety signals. The database
+<meta name="description" content="Caches and then connects to a sqlite database containing half a million pediatric drug safety signals. 
+    The database is part of a family of resources catalogued at &lt;https://nsides.io&gt;. The database
     contains 17 tables where the description table provides a map between the fields the fields details. 
-    The database was created by Nicholas Giangreco during his PhD thesis which you can read here &lt;doi:10.7916/d8-5d9b-6738&gt;. 
+    The database was created by Nicholas Giangreco during his PhD thesis which you can read in Giangreco (2022) &lt;doi:10.7916/d8-5d9b-6738&gt;. 
     The observations are from the Food and Drug Administrations Adverse Event Reporting System. Generalized additive models estimated
     drug effects across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
     Read more at the methods detailed in Giangreco (2022) &lt;doi:10.1016/j.medj.2022.06.001&gt;. ">
@@ -17,9 +18,10 @@
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Download, Cache, and Connect to KidSIDES">
-<meta property="og:description" content="Caches and then connects to a sqlite database containing half a million pediatric drug safety signals. The database
+<meta property="og:description" content="Caches and then connects to a sqlite database containing half a million pediatric drug safety signals. 
+    The database is part of a family of resources catalogued at &lt;https://nsides.io&gt;. The database
     contains 17 tables where the description table provides a map between the fields the fields details. 
-    The database was created by Nicholas Giangreco during his PhD thesis which you can read here &lt;doi:10.7916/d8-5d9b-6738&gt;. 
+    The database was created by Nicholas Giangreco during his PhD thesis which you can read in Giangreco (2022) &lt;doi:10.7916/d8-5d9b-6738&gt;. 
     The observations are from the Food and Drug Administrations Adverse Event Reporting System. Generalized additive models estimated
     drug effects across child development stages for the occurrence of an adverse event when exposed to a drug compared to other drugs.
     Read more at the methods detailed in Giangreco (2022) &lt;doi:10.1016/j.medj.2022.06.001&gt;. ">
@@ -36,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">kidsides</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +55,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/KidSIDES.html">Getting Started</a>
   </div>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -257,6 +262,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=kidsides" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/ngiangre/kidsides/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
