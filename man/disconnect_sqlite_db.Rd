@@ -16,7 +16,9 @@ TRUE, invisibly
 Disconnect the sqlite database connection.
 }
 \examples{
-\dontrun{
-   get_db_path()
+if(interactive()){
+download_sqlite_db()
+con <- connect_sqlite_db()
+disconnect_sqlite_db(con)
 }
 }

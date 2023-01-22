@@ -9,3 +9,5 @@ docs
 /doc/
 /Meta/
 archive
+*.tar.gz
+*.Rcheck/

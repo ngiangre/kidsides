@@ -13,7 +13,7 @@
 #'
 #' @importFrom R.utils downloadFile gunzip
 #' @importFrom tools R_user_dir
-#' @inportFrom utils askYesNo
+#' @importFrom utils askYesNo
 #'
 #' @examples
 #' if(interactive()){
@@ -32,7 +32,7 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE
 
     if(!file.exists(get_db_path()[['destname']]) | force){
 
-        ans <- askYesNo(paste0("kidsides would like to download a 'sqlite' database to your cache directory at:\n",dirname(get_db_path()[['dest_file']]), ". Is that okay?", sep = "\n"))
+        ans <- utils::askYesNo(paste0("kidsides would like to download a 'sqlite' database to your cache directory at:\n",dirname(get_db_path()[['dest_file']]), ". Is that okay?", sep = "\n"))
         if (!ans) stop("Exiting...", call. = FALSE)
 
 

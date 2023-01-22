@@ -27,7 +27,7 @@ TRUE, invisibly
 Download the database published in Giangreco et al. 2022. Warning, the size of the uncompressed 'sqlite' file is close to 900 MB. Use wit caution
 }
 \examples{
-\dontrun{
+if(interactive()){
 download_sqlite_db()
 }
 }
