@@ -13,7 +13,6 @@ list
 This function identifies and returns the cache location for the database on your machine
 }
 \examples{
-\dontrun{
-  get_db_path()
-}
+get_db_path()
+
 }

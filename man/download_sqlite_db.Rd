@@ -7,7 +7,7 @@
 download_sqlite_db(
   method = "auto",
   quiet = FALSE,
-  timeout = 360,
+  timeout = 1000,
   force = FALSE
 )
 }
@@ -16,7 +16,7 @@ download_sqlite_db(
 
 \item{quiet}{Whether to download quietly. See \code{download.file}}
 
-\item{timeout}{Extended download session for downloading tihs file. Default is 360 seconds.}
+\item{timeout}{Extended download session for downloading this file. Default is 1000 seconds.}
 
 \item{force}{Whether to force the download of the database. Defaults to FALSE.}
 }
@@ -24,7 +24,7 @@ download_sqlite_db(
 TRUE, invisibly
 }
 \description{
-Download the database published in Giangreco et al. 2022.
+Download the database published in Giangreco et al. 2022. Warning, the size of the uncompressed 'sqlite' file is close to 900 MB. Use wit caution
 }
 \examples{
 \dontrun{

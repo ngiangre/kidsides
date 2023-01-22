@@ -1,10 +1,10 @@
 #' Download the Pediatric Drug Safety database
 #'
-#' Download the database published in Giangreco et al. 2022.
+#' Download the database published in Giangreco et al. 2022. Warning, the size of the uncompressed 'sqlite' file is close to 900 MB. Use wit caution
 #'
 #' @param method The method to download the sqlite database. See \code{download.file}
 #' @param quiet Whether to download quietly. See \code{download.file}
-#' @param timeout Extended download session for downloading tihs file. Default is 360 seconds.
+#' @param timeout Extended download session for downloading this file. Default is 1000 seconds.
 #' @param force Whether to force the download of the database. Defaults to FALSE.
 #'
 #'
@@ -13,23 +13,29 @@
 #'
 #' @importFrom R.utils downloadFile gunzip
 #' @importFrom tools R_user_dir
+#' @inportFrom utils askYesNo
 #'
 #' @examples
-#' \dontrun{
+#' if(interactive()){
 #' download_sqlite_db()
 #' }
-download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE) {
+download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE) {
 
     newTimeout <- oldTimeout <- NULL
 
-    #store old timeout and change timeout if supplied
+    #store old timeout, change timeout if supplied, and restore on exit
     newTimeout <- timeout
-    oldTimeout <- options()[['timeout']]
+    on.exit(options(timeout=options()[['timeout']]))
     if(is.numeric(newTimeout)){
         options(timeout=newTimeout)
     }
 
     if(!file.exists(get_db_path()[['destname']]) | force){
+
+        ans <- askYesNo(paste0("kidsides would like to download a 'sqlite' database to your cache directory at:\n",dirname(get_db_path()[['dest_file']]), ". Is that okay?", sep = "\n"))
+        if (!ans) stop("Exiting...", call. = FALSE)
+
+
         R.utils::downloadFile(
             url = get_db_path()[['url']],
             filename = get_db_path()[['dest_file']],
@@ -40,8 +46,7 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
             get_db_path()[['dest_file']],
             get_db_path()[['destname']],
             overwrite=T
-            )
-
+        )
     }else if(file.exists(get_db_path()[['dest_file']])){
         message(paste0(
             get_db_path()[['dest_file']]," already exists!"
@@ -53,9 +58,6 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
             get_db_path()[['url']])
             )
     }
-
-    # reset to old user options
-    options(timeout=oldTimeout)
 
 }
 
@@ -72,7 +74,7 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=360,force=FALSE
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' if(interactive()){
 #' download_sqlite_db()
 #' con <- connect_sqlite_db()
 #' disconnect_sqlite_db(con)
@@ -95,8 +97,10 @@ connect_sqlite_db <- function(){
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'    get_db_path()
+#' if(interactive()){
+#' download_sqlite_db()
+#' con <- connect_sqlite_db()
+#' disconnect_sqlite_db(con)
 #' }
 disconnect_sqlite_db <- function(con){
     DBI::dbDisconnect(con)
@@ -112,9 +116,8 @@ disconnect_sqlite_db <- function(con){
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'   get_db_path()
-#'}
+#' get_db_path()
+#'
 get_db_path <- function(){
 
     url <- sqlite_file <- path <- full_path <- lst <- NULL
