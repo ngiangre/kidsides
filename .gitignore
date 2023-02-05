@@ -11,3 +11,4 @@ docs
 archive
 *.tar.gz
 *.Rcheck/
+inst/doc

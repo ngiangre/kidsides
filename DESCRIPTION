@@ -37,7 +37,13 @@ Suggests:
     rmarkdown,
     knitr,
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    DT,
+    gt,
+    lobstr,
+    prettyunits,
+    purrr,
+    tidyverse
 URL: https://github.com/ngiangre/kidsides, https://ngiangre.github.io/kidsides/, https://nsides.io
 VignetteBuilder: 
     knitr

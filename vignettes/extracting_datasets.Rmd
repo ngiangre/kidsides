@@ -1,0 +1,372 @@
+---
+title: "Extracting datasets from KidSIDES"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{extracting_datasets}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE
+)
+```
+
+```{r}
+library(tidyverse)
+library(gt)
+library(DT)
+library(kidsides)
+
+con <- kidsides::connect_sqlite_db()
+
+```
+
+# KidSIDES is large!
+
+For most users, it is a bit unwieldy using a ~900 MB database. Even some of 17 tables in the database are pretty large!
+
+```{r kidsides_table_sizes, echo=F}
+kidsides_table_sizes_df <- 
+    purrr::map(DBI::dbListTables(con),
+               function(tab){
+                   size <- 
+                       dplyr::tbl(con,tab) %>% 
+                       dplyr::collect() %>% 
+                       lobstr::obj_size() %>% 
+                       as.numeric()
+                   dplyr::tibble(
+                       "KidSIDES table"=tab,
+                       "Object bytes"=size,
+                       "Table size"=size %>% prettyunits::pretty_bytes()
+                   )
+               }) %>% 
+    dplyr::bind_rows()
+```
+
+```{r, echo=F}
+kidsides_table_sizes_df %>% 
+    dplyr::arrange(dplyr::desc(`Object bytes`)) %>% 
+    dplyr::select(-`Object bytes`) %>% 
+    gt::gt()
+```
+
+A subset of the data (up to 10MB) will be more manageable to work with. This vignette gives a non-exhaustive list of manageable datasets from the KidSIDES database.
+
+# Extract smaller datasets by drugs and events
+
+Extracting datasets from KidSIDES requires interacting with standard vocabularies for drugs and events. Drugs are represented by the Anatomical Therapeutic Class vocabulary ([Reference from the WHO](https://www.who.int/tools/atc-ddd-toolkit/atc-classification)). Events are encoded in the Medical Dictionary of Regulatory Activities vocabulary ([Reference from MedDRA](https://www.meddra.org/how-to-use/basics/hierarchy)). You can interact with these vocabularies for identifying drugs and events using the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/). This a shiny application for first identifying drugs and events of interest and then viewing their drug safety signals across childhood. 
+
+In this document, some example datasets are extracted using a specific drug and event:
+
+```{r}
+drug_ <- 
+    tbl(con,"drug") %>% 
+    filter(atc_concept_name=="montelukast; oral") %>%  
+    collect() %>% 
+    pull(atc_concept_name)
+drug_id_ <- 
+    tbl(con,"drug") %>% 
+    filter(atc_concept_name==drug_) %>% 
+    collect() %>% 
+    pull(atc_concept_id)
+event_ <- 
+    tbl(con,"event") %>% 
+    filter(meddra_concept_name_1=="Suicidal ideation") %>%  
+    collect() %>% 
+    pull(meddra_concept_name_1)
+event_id_ <- 
+    tbl(con,"event") %>% 
+    filter(meddra_concept_name_1==event_) %>%  
+    collect() %>% 
+    pull(meddra_concept_id)
+
+drug_
+drug_id_
+event_
+event_id_
+```
+
+## Example 1: Drug dataset
+
+Table of all reported drugs with the ATC vocabulary in KidSIDES.
+
+```{r}
+table_ <- "drug"
+
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 2: Event dataset
+
+Table of all co-reported events with the MedDRA vocabulary in KidSIDES. 
+
+```{r}
+table_ <- "event"
+
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 3: Drug safety report datasets
+
+Table of report characteristics for drugs reports with events in KidSIDES.
+
+```{r}
+table_ <- "ade_raw"
+
+#dataset size for most frequent drug
+dplyr::tbl(con,table_) %>% 
+    dplyr::filter(atc_concept_id=="21603929") %>% 
+    dplyr::collect() %>% 
+    lobstr::obj_size()
+
+#dataset size for least frequent drug
+dplyr::tbl(con,table_) %>% 
+    dplyr::filter(atc_concept_id=="21600407") %>% 
+    dplyr::collect() %>% 
+    lobstr::obj_size()
+
+#datasets using pre-selected drugs and events
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::filter(
+        atc_concept_id==drug_id_
+    ) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::filter(
+        atc_concept_id==drug_id_ &
+            meddra_concept_id==event_id_
+    ) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 4: Pediatric drug safety signal dataset
+
+Table of drug-event observations including signal chharacteristics in KidSIDES.
+
+```{r}
+table_ <- "ade"
+
+#Significant signals
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::filter(gt_null_99==1) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 5: Pediatric drug safety signal time series dataset
+
+Table of drug safety signals across childhood in KidSIDES.
+
+```{r}
+table_ <- "ade_nichd"
+
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::filter(ade_name==paste0(drug_," and ",event_)) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::filter(atc_concept_id==drug_id_) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 6: Significant drug safety signal class enrichments
+
+Table of drug and event classes for significant drug safety signal enrichment in KidSIDES.
+
+```{r}
+table_ <- "ade_nichd_enrichment"
+
+df <- 
+    tbl(con,table_) %>% 
+    dplyr::filter(
+        is.na(atc_concept_class_id) &
+        meddra_concept_class_id=="SOC"
+    ) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+iter <- 
+    dplyr::tbl(con,table_) %>% 
+    select(atc_concept_class_id,meddra_concept_class_id) %>% 
+    distinct() %>% 
+    collect() %>% 
+    drop_na()
+
+gt <- purrr::map(1:nrow(iter),~{
+    df <- 
+        tbl(con,table_) %>% 
+        dplyr::filter(
+        atc_concept_class_id==!!iter[.x,
+                                   "atc_concept_class_id",
+                                   drop=T] &
+        meddra_concept_class_id==!!iter[.x,
+                                      "meddra_concept_class_id",
+                                      drop=T]
+      ) %>% 
+      dplyr::collect()
+    
+    size <- df %>% 
+        lobstr::obj_size() %>% 
+        as.numeric()
+    
+    dplyr::tibble(
+        "atc_concept_class_id" = iter[.x,
+                                   "atc_concept_class_id",
+                                   drop=T],
+        "meddra_concept_class_id" = iter[.x,
+                                      "meddra_concept_class_id",
+                                      drop=T],
+         "Object size" = size %>% prettyunits::pretty_bytes()
+       )
+
+}) %>% 
+    bind_rows() %>% 
+    gt()
+
+gt
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+## Example 7: Gene expression across childhood
+
+Table of gene expression across childhood in KidSIDES.
+
+```{r}
+table_ <- "gene_expression"
+
+df <- 
+    dplyr::tbl(con,table_) %>% 
+    dplyr::collect() %>% 
+    dplyr::select(sample,nichd,probe,gene_symbol,prediction) %>% 
+    dplyr::collect()
+
+df %>% dim()
+df %>% lobstr::obj_size()
+df %>% head(1000) %>% DT::datatable(options = list(pageLengt=5,scrollX = TRUE))
+```
+
+```{r}
+gt <- 
+    dplyr::tbl(con,"dictionary") %>% 
+    dplyr::filter(table==table_) %>% 
+    gt()
+
+gt
+```
+
+# Check out the references for dataset details
+
+It is out of scope for this vignette to detail the information in each dataset. Please contact Nick directly by sending an email, posting an issue on Github, tooting at Fosstodon, or sending a message via Carrier Pigeon. The best source is the Med paper for more information on the pediatric drug safety data. Hopefully these examples show how to extract manageable datasets for exploring what KidSIDES has to offer!
+
+## References
+
+Giangreco, Nicholas. Mind the developmental gap: Identifying adverse drug effects across childhood to evaluate biological mechanisms from growth and development. 2022. Columbia University, [PhD dissertation](https://doi.org/10.7916/d8-5d9b-6738).
+
+Giangreco NP, Tatonetti NP. A database of pediatric drug effects to evaluate ontogenic mechanisms from child growth and development. Med (N Y). 2022 Aug 12;3(8):579-595.e7. [doi: 10.1016/j.medj.2022.06.001](https://doi.org/10.1016/j.medj.2022.06.001). Epub 2022 Jun 24. PMID: 35752163; PMCID: PMC9378670.
+
+```{r}
+kidsides::disconnect_sqlite_db(con)
+```

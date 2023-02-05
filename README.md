@@ -7,11 +7,14 @@ KidSIDES
 [![R-CMD-check](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ngiangre/kidsides/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/ngiangre/kidsides/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ngiangre/kidsides?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/kidsides)](https://CRAN.R-project.org/package=kidsides)
 <!-- badges: end -->
 
 # Installation
 
 ``` r
+install.packages('kidsides')
 remotes::install_github("ngiangre/kidsides")
 ```
 
@@ -266,6 +269,6 @@ dissertation](https://doi.org/10.7916/d8-5d9b-6738).
 
 Giangreco NP, Tatonetti NP. A database of pediatric drug effects to
 evaluate ontogenic mechanisms from child growth and development. Med (N
-Y). 2022 Jun 20:S2666-6340(22)00232-X. [doi:
+Y). 2022 Aug 12;3(8):579-595.e7. [doi:
 10.1016/j.medj.2022.06.001](https://doi.org/10.1016/j.medj.2022.06.001).
-Epub ahead of print. PMID: 35752163.
+Epub 2022 Jun 24. PMID: 35752163; PMCID: PMC9378670.
