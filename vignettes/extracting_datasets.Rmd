@@ -22,7 +22,6 @@ library(DT)
 library(kidsides)
 
 con <- kidsides::connect_sqlite_db()
-
 ```
 
 # KidSIDES is large!
