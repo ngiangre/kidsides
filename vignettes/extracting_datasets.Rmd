@@ -44,9 +44,7 @@ kidsides_table_sizes_df <-
                    )
                }) %>% 
     dplyr::bind_rows()
-```
 
-```{r, echo=F}
 kidsides_table_sizes_df %>% 
     dplyr::arrange(dplyr::desc(bytes)) %>% 
     dplyr::select(-bytes) %>% 
