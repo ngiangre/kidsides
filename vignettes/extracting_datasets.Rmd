@@ -39,7 +39,7 @@ kidsides_table_sizes_df <-
                        as.numeric()
                    dplyr::tibble(
                        "KidSIDES table"=tab,
-                       "Object bytes"=size,
+                       "bytes"=size,
                        "Table size"=size %>% prettyunits::pretty_bytes()
                    )
                }) %>% 
@@ -48,8 +48,8 @@ kidsides_table_sizes_df <-
 
 ```{r, echo=F}
 kidsides_table_sizes_df %>% 
-    dplyr::arrange(dplyr::desc(`Object bytes`)) %>% 
-    dplyr::select(-`Object bytes`) %>% 
+    dplyr::arrange(dplyr::desc(bytes)) %>% 
+    dplyr::select(-bytes) %>% 
     gt::gt()
 ```
 
