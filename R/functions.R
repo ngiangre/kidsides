@@ -35,7 +35,6 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE
         ans <- utils::askYesNo(paste0("kidsides would like to download a 'sqlite' database to your cache directory at: ",dirname(get_db_path()[['dest_file']]), ". Is that okay?", sep = "\n"))
         if (!ans) stop("Exiting...", call. = FALSE)
 
-
         R.utils::downloadFile(
             url = get_db_path()[['url']],
             filename = get_db_path()[['dest_file']],

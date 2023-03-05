@@ -8,7 +8,11 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE
+)
 ```
 
 # KidSIDES
@@ -19,27 +23,22 @@ The main thesis behind this published resource is that children have adverse eve
 
 The package helps with identifying, retrieving, and loading the database. 
 
-Retrieve the database:
+Load library:
 
 ```{r}
-
 library(kidsides)
-
 ```
 
 Connect to the database:
 
 ```{r}
-
-#download_sqlite_db()
+download_sqlite_db() #downloads to cache, if not already there
 con <- connect_sqlite_db()
-
 ```
 
 Do something:
 
 ```{r}
-
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -105,7 +104,6 @@ tbl(con,"ade_nichd") %>%
     filter(ade_name==paste0(drug_," and ",event_)) %>% 
     collect() %>% 
     plot_ade_risks()
-
 ```
 
 The labelled numbers are the number of observed drug reports with the adverse event. The red bars and intervals are the estimated signal of the drug exposure's effect on the occurrence of an adverse event at that child development stage. In this context, risk and signal estimate are synonymous - we use a risk model to generate drug safety signals. 
@@ -113,9 +111,7 @@ The labelled numbers are the number of observed drug reports with the adverse ev
 Disconnect database:
 
 ```{r}
-
 disconnect_sqlite_db(con)
-
 ```
 
 There is so much that can be done with this and the other data found in this database. Stay tuned for more vignettes!
