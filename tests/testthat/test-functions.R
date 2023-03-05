@@ -7,6 +7,24 @@ test_that("URL is correct",{
 
 })
 
+test_that("Downloaded file is correct and sqlite correction is correct",{
+
+    con <- connect_sqlite_db()
+
+    expect_equal(
+        attr(con,"class")[1],
+        "SQLiteConnection"
+    )
+
+    expect_equal(
+        basename(attr(con,"dbname")),
+        basename(get_db_path()[['destname']])
+    )
+
+    disconnect_sqlite_db(con)
+
+})
+
 test_that("get_db_path() returns list",{
 
     expect_equal(
