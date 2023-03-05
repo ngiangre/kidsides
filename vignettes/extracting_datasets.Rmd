@@ -21,6 +21,7 @@ library(gt)
 library(DT)
 library(kidsides)
 
+#download_sqlite_db()
 con <- kidsides::connect_sqlite_db()
 ```
 

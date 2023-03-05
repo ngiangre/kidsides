@@ -27,17 +27,11 @@ library(kidsides)
 
 ```
 
-
-```{r}
-
-download_sqlite_db() #downloads to cache, if not already there
-
-```
-
 Connect to the database:
 
 ```{r}
 
+#download_sqlite_db()
 con <- connect_sqlite_db()
 
 ```
