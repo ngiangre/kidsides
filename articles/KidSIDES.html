@@ -100,29 +100,19 @@ adverse drug events during childhood.</p>
 </h3>
 <p>The package helps with identifying, retrieving, and loading the
 database.</p>
-<p>Retrieve the database:</p>
+<p>Load library:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ngiangre/kidsides" class="external-link">kidsides</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#downloads to cache, if not already there</span></span></code></pre></div>
-<pre><code><span><span class="co">## kidsides would like to download a 'sqlite' database to your cache directory at: /home/runner/.cache/R/kidsides. Is that okay?</span></span>
-<span><span class="co">##  (Yes/no/cancel)</span></span></code></pre>
 <p>Connect to the database:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#downloads to cache, if not already there</span></span>
+<span><span class="co">#&gt; kidsides would like to download a 'sqlite' database to your cache directory at: /home/runner/.cache/R/kidsides. Is that okay?</span></span>
+<span><span class="co">#&gt;  (Yes/no/cancel)</span></span>
+<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Do something:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span>
 <span></span>
@@ -186,14 +176,14 @@ database.</p>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ade_name</span><span class="op">==</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">drug_</span>,<span class="st">" and "</span>,<span class="va">event_</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu">plot_ade_risks</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="KidSIDES_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="KidSIDES_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>The labelled numbers are the number of observed drug reports with the
 adverse event. The red bars and intervals are the estimated signal of
 the drug exposure’s effect on the occurrence of an adverse event at that
 child development stage. In this context, risk and signal estimate are
 synonymous - we use a risk model to generate drug safety signals.</p>
 <p>Disconnect database:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/disconnect_sqlite_db.html">disconnect_sqlite_db</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
 <p>There is so much that can be done with this and the other data found
 in this database. Stay tuned for more vignettes!</p>
