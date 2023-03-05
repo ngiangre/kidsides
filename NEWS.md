@@ -1,3 +1,7 @@
+# kidsides 0.4.2
+
+* Added one test for checking accurate database was downnloaded and dsqlite connection was made
+
 # kidsides 0.4.1
 
 * Added `on.exit` code, added `askYesNo` permission before downloading the database for the first time, and increased default timeout for function `download_sqlite_db`

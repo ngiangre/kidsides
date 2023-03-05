@@ -1,6 +1,6 @@
 Package: kidsides
 Title: Download, Cache, and Connect to KidSIDES
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: c(
     person("Nicholas", "Giangreco", 
     email = "nick.giangreco@gmail.com", 
