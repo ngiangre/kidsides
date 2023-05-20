@@ -18,16 +18,16 @@ download_sqlite_db(
 
 \item{timeout}{Extended download session for downloading this file. Default is 1000 seconds.}
 
-\item{force}{Whether to force the download of the database. Defaults to FALSE.}
+\item{force}{Whether to force the download of the database. Defaults to FALSE. Needs to be TRUE for database to download. The function will prompt for confirmation.}
 }
 \value{
 TRUE, invisibly
 }
 \description{
-Download the database published in Giangreco et al. 2022. Warning, the size of the uncompressed 'sqlite' file is close to 900 MB. Use wit caution
+Download the database published in Giangreco et al. 2022. This function will prompt to download the database, so the cache directory will be identified and the database will be downloaded to it only after consent. Warning, the size of the uncompressed 'sqlite' file is close to 0.9GB or 900 MB. Use with caution.
 }
 \examples{
 if(FALSE){
-download_sqlite_db()
+download_sqlite_db() #set force=TRUE if desired to download 0.9GB file to machine
 }
 }

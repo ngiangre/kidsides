@@ -10,7 +10,7 @@ get_db_path()
 list
 }
 \description{
-This function identifies and returns the cache location for the database on your machine
+This function returns the URL, sqlite database file, and cache names to be used for downloading the database to your machine.
 }
 \examples{
 get_db_path()
