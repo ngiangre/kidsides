@@ -16,5 +16,5 @@
 ^data-raw$
 ^codecov\.yml$
 archive
-*.tar.gz
+^.*.tar.gz
 .DS_Store
