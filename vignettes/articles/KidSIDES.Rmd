@@ -32,7 +32,7 @@ library(kidsides)
 Connect to the database:
 
 ```{r}
-download_sqlite_db() #downloads to cache, if not already there
+download_sqlite_db(force=TRUE) #downloads to cache, if not already there
 con <- connect_sqlite_db()
 ```
 

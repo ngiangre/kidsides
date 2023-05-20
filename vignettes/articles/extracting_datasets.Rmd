@@ -21,7 +21,7 @@ library(gt)
 library(DT)
 library(kidsides)
 
-download_sqlite_db() #downloads to cache, if not already there
+download_sqlite_db(force=TRUE) #downloads to cache, if not already there
 con <- kidsides::connect_sqlite_db()
 ```
 

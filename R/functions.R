@@ -30,12 +30,16 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE
         options(timeout=newTimeout)
     }
 
-    if(force){
+    if(file.exists(get_db_path()[['dest_file']])){
+        message(paste0(
+            "Already exists: ",get_db_path()[['dest_file']]
+        ))
+    }else if(force){
 
         ans <- utils::askYesNo(
             paste0("kidsides would like to download a 0.9GB 'sqlite' database to your cache. Is that okay?\nThe file will be located at at: ",
                    get_db_path()[['kidsides_cache']], sep = "\n")
-            )
+        )
         if (!ans) stop("Exiting...", call. = FALSE)
 
         if(!dir.exists(get_db_path()[['kidsides_cache']])){
@@ -53,10 +57,6 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE
             get_db_path()[['dest_file']],
             overwrite=T
         )
-    }else if(file.exists(get_db_path()[['dest_file']])){
-        message(paste0(
-            "Already exists: ",get_db_path()[['dest_file']]
-            ))
     }else{
         message(paste0(
             "Attempt failed to check sqlite exists",
