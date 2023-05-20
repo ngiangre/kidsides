@@ -6,6 +6,7 @@
 ^pkgdown$
 ^\.github$
 ^.*\.sqlite$
+^vignettes$
 ^vignettes/.ipynb_checkpoints
 ^vignettes/*.sqlite
 ^\.ipynb$
@@ -15,3 +16,5 @@
 ^data-raw$
 ^codecov\.yml$
 archive
+*.tar.gz
+.DS_Store

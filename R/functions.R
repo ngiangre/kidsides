@@ -16,7 +16,7 @@
 #' @importFrom utils askYesNo
 #'
 #' @examples
-#' if(interactive()){
+#' if(FALSE){
 #' download_sqlite_db()
 #' }
 download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE) {
@@ -73,7 +73,7 @@ download_sqlite_db <- function(method="auto",quiet=FALSE,timeout=1e3,force=FALSE
 #' @export
 #'
 #' @examples
-#' if(interactive()){
+#' if(FALSE){
 #' download_sqlite_db()
 #' con <- connect_sqlite_db()
 #' disconnect_sqlite_db(con)
@@ -96,7 +96,7 @@ connect_sqlite_db <- function(){
 #' @export
 #'
 #' @examples
-#' if(interactive()){
+#' if(FALSE){
 #' download_sqlite_db()
 #' con <- connect_sqlite_db()
 #' disconnect_sqlite_db(con)

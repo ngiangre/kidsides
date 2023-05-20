@@ -1,6 +1,7 @@
 # kidsides 0.4.2
 
-* Added one test for checking accurate database was downnloaded and dsqlite connection was made
+* Added one test for checking accurate database was downloaded and sqlite connection was made
+* Places vignettes into Rbuildignore because of dependency on sqlite download
 
 # kidsides 0.4.1
 
