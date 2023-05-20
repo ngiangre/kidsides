@@ -17,7 +17,7 @@ Description: Caches and then connects to a 'sqlite' database containing half a m
     Read more at the methods detailed in Giangreco (2022) <doi:10.1016/j.medj.2022.06.001>. 
 License: CC BY 4.0
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Imports: 
     DBI,
     RSQLite,

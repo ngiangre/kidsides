@@ -16,7 +16,7 @@ TRUE, invisibly
 Disconnect the sqlite database connection.
 }
 \examples{
-if(interactive()){
+if(FALSE){
 download_sqlite_db()
 con <- connect_sqlite_db()
 disconnect_sqlite_db(con)

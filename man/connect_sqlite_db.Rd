@@ -13,7 +13,7 @@ SQLite connection
 Establish a sqlite connection from the downloaded database.
 }
 \examples{
-if(interactive()){
+if(FALSE){
 download_sqlite_db()
 con <- connect_sqlite_db()
 disconnect_sqlite_db(con)
