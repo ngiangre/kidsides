@@ -1,3 +1,10 @@
+# kidsides 0.5.0
+
+* Added more tests to verify `get_db_path` outputs and `download_sqlite_db` logic
+* Places README summary text in an Overview vignette
+* Puts other vignettes in vignettes/articles/ folder
+* Revises function logic to now download or create kidsides cache directory until consent is given
+
 # kidsides 0.4.2
 
 * Added one test for checking accurate database was downloaded and sqlite connection was made
