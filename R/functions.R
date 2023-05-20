@@ -1,6 +1,6 @@
 #' Download the Pediatric Drug Safety database
 #'
-#' Download the database published in Giangreco et al. 2022. Warning, the size of the uncompressed 'sqlite' file is close to 0.9GB or 900 MB. Use with caution
+#' Download the database published in Giangreco et al. 2022. This function will prompt to download the database, so the cache directory will be identified and the database will be downloaded to it only after consent. Warning, the size of the uncompressed 'sqlite' file is close to 0.9GB or 900 MB. Use with caution.
 #'
 #' @param method The method to download the sqlite database. See \code{download.file}
 #' @param quiet Whether to download quietly. See \code{download.file}
@@ -116,7 +116,7 @@ disconnect_sqlite_db <- function(con){
 
 #' Return database cache
 #'
-#' This function identifies and returns the cache location for the database on your machine
+#' This function returns the URL, sqlite database file, and cache names to be used for downloading the database to your machine.
 #'
 #' @importFrom tools R_user_dir
 #'

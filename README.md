@@ -11,7 +11,16 @@ coverage](https://codecov.io/gh/ngiangre/kidsides/branch/main/graph/badge.svg)](
 status](https://www.r-pkg.org/badges/version/kidsides)](https://CRAN.R-project.org/package=kidsides)
 <!-- badges: end -->
 
+This R data package contains observation, summary, and model-level data
+from pediatric drug safety research developed by Nicholas Giangreco for
+his PhD dissertation in the Tatonetti lab at Columbia University.
+
 # Installation
+
+**The database is downloaded after consent is given when using the
+package. Installing the package will not download the database, but it
+will make it easier to download and connect to the database from your R
+session.**
 
 ``` r
 install.packages('kidsides')
@@ -19,10 +28,6 @@ remotes::install_github("ngiangre/kidsides")
 ```
 
 # Summary
-
-This R data package contains observation, summary, and model-level data
-from pediatric drug safety research developed by Nicholas Giangreco for
-his PhD dissertation in the Tatonetti lab at Columbia University.
 
 The database is comprised of 17 tables including a table with
 descriptions of the fields in each table. The main table, `ade_nichd`,
@@ -35,6 +40,9 @@ references.
 
 This data resource can be used under the [CC BY
 4.0](https://creativecommons.org/licenses/by/4.0/) license agreement.
+
+**See the `Overview` vignette for more details on the data and the
+online portal**
 
 # Usage
 
@@ -175,90 +183,6 @@ dplyr::tbl(con,"ade_raw") %>%
 ``` r
 kidsides::disconnect_sqlite_db(con)
 ```
-
-# Background
-
-Adverse drug reactions are a leading cause of morbidity and mortality
-that costs billions of dollars for the healthcare system. In children,
-there is increased risk for adverse drug reactions with potentially
-lasting adverse effects into adulthood. The current pediatric drug
-safety landscape, including clinical trials, is limited as it rarely
-includes children and relies on extrapolation from adults. Children are
-not small adults but go through an evolutionarily conserved and
-physiologically dynamic process of growth and maturation. We hypothesize
-that adverse drug reactions manifest from the interaction between drug
-exposure and dynamic biological processes during child growth and
-development.
-
-We hypothesize that by developing statistical methodologies with prior
-knowledge of dynamic, shared information during development, we can
-improve the detection of adverse drug events in children. This data
-package downloads the SQLite database created by applying
-covariate-adjusted disproportionality generalized additive models
-(dGAMs) in a systematic way to develop a resource of nearly half a
-million adverse drug event (ADE) risk estimates across child development
-stages.
-
-# Pediatric Drug Safety (PDS) data
-
-## Observation-level data
-
-The observation-level data, case reports for drug(s) potentially linked
-to adverse event(s), was collected by the Food and Drug Administration
-Adverse Event System (FAERS) in the US. This data is publicly available
-on the openFDA platform [here](https://open.fda.gov/data/downloads/) as
-downloadable [json files](https://api.fda.gov/download.json). However,
-utilizing this data as-is is non-trivial, where the drug event report
-data is published in chunks as a nested json structure each quarter per
-year since the 1990s. With an API key with extended permissions, I
-developed custom python notebooks and scripts available in the
-‘openFDA_drug_event-parsing’ github repository (DOI:
-<https://doi.org/10.5281/zenodo.4464544>) to extract and format all drug
-event reports prior to the third quarter of 2019. This observation-level
-data used, called Pediatric FAERS, for downstream analyses is stored in
-the table `ade_raw`.
-
-## Summary-level data
-
-The drugs and adverse events reported were coded into standard,
-hierarchical vocabularies. Adverse events were standardized by the
-Medical Dictionary of Regulatory Activities (MedDRA) vocabulary (details
-of the hierarcy founds
-[here](https://www.meddra.org/how-to-use/basics/hierarchy)). Drugs were
-standardized by the Anatomical Therapeutic Class (ATC) vocabulary
-(details found
-[here](https://www.who.int/tools/atc-ddd-toolkit/atc-classification)).
-The reporting of adverse events and drugs can be dependent on the
-disease context of a report’s subject. This was represented by
-summarizing the number of drugs of a therapeutic class for each report.
-
-## Model-level data
-
-We invented the disproportionality generalized additive model (dGAM)
-method for detecting adverse drug events from these spontaneous reports.
-We applied the logistic generalized additive model to all unique
-drug-event pairs in Pediatric FAERS. The drug-event GAM was used to
-quantify adverse event risk due to drug exposure versus no exposure
-across child development stages. Please see the references for the full
-specification and details on the GAM.
-
-# PDSportal: accessible data access
-
-We provide the [PDSportal](https://pdsportal.shinyapps.io/pdsportal/) as
-an accessible web application as well as a plaatform to download our
-database for the community to explore from identifying safety endpoints
-in clinical trials to evaluating known and novel developmental
-pharmacology.
-
-# KidSIDES
-
-The `kidsides` R package downloads a sqlite database to your local
-machine and connects to the database using the `DBI` R package. This is
-a novel data resource of half a million pediatric drug safety signals
-across growth and development stages. Please see the references for
-details on data fields and the [code
-repository](https://github.com/ngiangre/pediatric_ade_database_study)
-for the [paper](https://www.ssrn.com/abstract=3898786).
 
 # References
 

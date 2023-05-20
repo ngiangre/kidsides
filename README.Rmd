@@ -15,7 +15,11 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+This R data package contains observation, summary, and model-level data from pediatric drug safety research developed by Nicholas Giangreco for his PhD dissertation in the Tatonetti lab at Columbia University.
+
 # Installation
+
+**The database is downloaded after consent is given when using the package. Installing the package will not download the database, but it will make it easier to download and connect to the database from your R session.**
 
 ```{r,eval=FALSE}
 install.packages('kidsides')
@@ -24,13 +28,13 @@ remotes::install_github("ngiangre/kidsides")
 
 # Summary
 
-This R data package contains observation, summary, and model-level data from pediatric drug safety research developed by Nicholas Giangreco for his PhD dissertation in the Tatonetti lab at Columbia University.
-
 The database is comprised of 17 tables including a table with descriptions of the fields in each table. The main table, `ade_nichd`, contains quantitative data from nearly 500,000 pediatric drug safety signals across 7 child development stages spanning from birth through late adolescence (21 years of age).
 
 The database was created using the methods and analyses in the references.
 
 This data resource can be used under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license agreement. 
+
+**See the `Overview` vignette for more details on the data and the online portal**
 
 # Usage
 
@@ -60,8 +64,6 @@ dplyr::tbl(con,"ade_raw") %>%
 kidsides::disconnect_sqlite_db(con)
 
 ```
-
-** See the `Overview` vignette for more details on the data and the online portal**
 
 # References
 
