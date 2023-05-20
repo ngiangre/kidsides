@@ -6,7 +6,7 @@
 ^pkgdown$
 ^\.github$
 ^.*\.sqlite$
-^vignettes$
+^vignettes/articles$
 ^vignettes/.ipynb_checkpoints
 ^vignettes/*.sqlite
 ^\.ipynb$
