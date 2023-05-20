@@ -40,14 +40,14 @@ This data resource can be used under the [CC BY 4.0](https://creativecommons.org
 
 ```{r}
 
-library(dplyr)
 library(kidsides)
-kidsides::download_sqlite_db()
+kidsides::download_sqlite_db(force=TRUE)
 
 con <- kidsides::connect_sqlite_db()
 
 DBI::dbListTables(con)
 
+library(dplyr)
 dplyr::tbl(con,"dictionary") %>% 
     dplyr::collect()
 

@@ -47,26 +47,13 @@ online portal**
 # Usage
 
 ``` r
-library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(kidsides)
-kidsides::download_sqlite_db()
+kidsides::download_sqlite_db(force=TRUE)
 ```
 
-    ## Attempt failed to check sqlite exists or to download from the URL: https://tlab-kidsides.s3.amazonaws.com/data/effect_peds_19q2_v0.3_20211119.sqlite.gz
+    ## kidsides would like to download a 0.9GB 'sqlite' database to your cache. Is that okay?
+    ## The file will be located at at: /Users/nickgiangreco/Library/Caches/org.R-project.R/R/kidsides
+    ##  (Yes/no/cancel)
 
 ``` r
 con <- kidsides::connect_sqlite_db()
@@ -91,6 +78,21 @@ DBI::dbListTables(con)
     ## [15] "grip"                                          
     ## [16] "ryan"                                          
     ## [17] "sider"
+
+``` r
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
 
 ``` r
 dplyr::tbl(con,"dictionary") %>% 
