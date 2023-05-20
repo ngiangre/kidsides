@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">kidsides</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Overview.html">Overview</a>
     <a class="dropdown-item" href="../articles/KidSIDES.html">Getting Started</a>
     <a class="dropdown-item" href="../articles/extracting_datasets.html">Extracting datasets from KidSIDES</a>
   </div>
@@ -105,8 +106,9 @@ database.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ngiangre/kidsides" class="external-link">kidsides</a></span><span class="op">)</span></span></code></pre></div>
 <p>Connect to the database:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#downloads to cache, if not already there</span></span>
-<span><span class="co">#&gt; kidsides would like to download a 'sqlite' database to your cache directory at: /home/runner/.cache/R/kidsides. Is that okay?</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/download_sqlite_db.html">download_sqlite_db</a></span><span class="op">(</span>force<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co">#downloads to cache, if not already there</span></span>
+<span><span class="co">#&gt; kidsides would like to download a 0.9GB 'sqlite' database to your cache. Is that okay?</span></span>
+<span><span class="co">#&gt; The file will be located at at: /home/runner/.cache/R/kidsides</span></span>
 <span><span class="co">#&gt;  (Yes/no/cancel)</span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/connect_sqlite_db.html">connect_sqlite_db</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Do something:</p>
