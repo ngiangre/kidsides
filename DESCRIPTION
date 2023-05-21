@@ -1,5 +1,5 @@
 Package: kidsides
-Title: Download, Cache, and Connect to KidSIDES
+Title: Download, Cache, and Connect to 'KidSIDES'
 Version: 0.5.0
 Authors@R: c(
     person("Nicholas", "Giangreco", 
